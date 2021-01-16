@@ -6,12 +6,12 @@
 	>
 		<el-table-column
       prop="name"
-      label="字段"
+      label=" ITEM "
       >
     </el-table-column>
 		<el-table-column
       prop="value"
-      label="值"
+      label="VALUE"
       >
     </el-table-column>
 	</el-table>

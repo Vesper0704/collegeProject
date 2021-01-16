@@ -5,6 +5,7 @@
 		:class="{ 'active show': active }"
 		v-show="active"
 		:aria-expanded="active"
+
 	>
 		<slot></slot>
 	</div>

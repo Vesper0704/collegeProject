@@ -1,6 +1,11 @@
 <template>
   <div class="container mt--300 text-center">
-    <h3 class="display-3 text-white">请在此界面上传您的作品</h3>
+    <i class="ni ni-cloud-download-95 " style="color: whitesmoke"></i><h3  class="display-3" style="font-family: 'Comic Sans MS';
+    font-size: 30px;
+    color:navajowhite">
+      --Upload your picture here--<br/>
+    </h3>
+    <br/>
     <el-upload
       :before-upload="beforeUpload"
       action="#"
@@ -12,20 +17,24 @@
       :on-remove="handleRemove"
       multiple
       >
-      <i class="el-icon-plus"></i>
+      <i class="el-icon-add-location"></i>
     </el-upload>
+
     <el-dialog :visible.sync="dialogVisible">
       <img width="100%" :src="dialogImageUrl" alt="">
     </el-dialog>
     <el-dialog :visible.sync="dialogVisible">
       <img width="100%" :src="dialogImageUrl" alt="">
     </el-dialog>
-    <base-button type="success" class="upload-button" @click="submitUpload">点击上传</base-button>
-    <base-button type="primary" class="upload-button" @click="goback">返回</base-button>
+    <br/>
+    <base-button type="danger" class="upload-button" @click="submitUpload">upload</base-button>
+    <span>&nbsp;&nbsp;&nbsp;&nbsp</span>
+    <span></span>
+    <base-button type="dark" class="upload-button" @click="goback">back</base-button>
 
     <image-detail v-for="(info,index) in imageInfo" :key="index" :tableData="info"></image-detail>
   </div>
-  
+
 </template>
 <script>
 import axios from 'axios'
@@ -49,7 +58,7 @@ export default {
   },
   methods: {
     handleRemove(file, fileList) {
-      
+
     },
     handlePictureCardPreview(file) {
       this.dialogImageUrl = file.url;
@@ -65,7 +74,7 @@ export default {
         formData.append('files', file)
       })
       formData.append('mail', info.mail)
-      
+
       axios.post('http://127.0.0.1:3000/users/multiUpload', formData, headerConfig).then(res => {
         const data = res.data.data
         console.log(res)
@@ -106,7 +115,7 @@ export default {
              this.$message.error('上传文件失败')
           }
         }
-        
+
       })
       .then(data => {
 

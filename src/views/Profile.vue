@@ -30,6 +30,6 @@ export default {
 <style scoped lang="scss">
 .collection-image {
     width: 100%;
-    margin-top: 5vh;
+    margin-top: 6vh;
 }
 </style>

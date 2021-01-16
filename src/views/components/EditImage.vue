@@ -3,15 +3,16 @@
     <card>
       <template v-slot:header>
         <div class="text-center">
-          <h3>编辑图片</h3>
+          <h3 style="font-family: 'Comic Sans MS';font-size: x-large">Edit your picture</h3>
         </div>
         </template>
-      <div class="container">
+      <div class="container" style="background-color:whitesmoke">
         <div class="row justify-content-center">
           <img :src="url" alt="" class="image">
         </div>
-        <div class="row justify-content-center info">
-          <image-detail v-for="(info,index) in imageInfo" :key="index" :tableData="info"></image-detail>
+        <div class="row justify-content-center info" style="background-color: red">
+          <image-detail v-for="(info,index) in imageInfo" :key="index"
+                        :tableData="info" style="color: red;font-family: 'Comic Sans MS'"></image-detail>
         </div>
 
         <div class="row justify-content-center transfer">
@@ -23,9 +24,11 @@
       <template v-slot:footer>
         <div class="text-center">
           <base-button type="primary" @click="canTransfer=true">转让</base-button>
-          <base-button type="secondary" @click="register">登记</base-button>
-          <base-button type="default" @click="monit">{{monitMessage}}</base-button>
-          <base-button type="info" @click="goback">返回</base-button>
+        <sapn>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp</sapn>
+<!--          <base-button type="secondary" @click="register">登记</base-button>-->
+          <base-button type="danger" @click="monit">{{monitMessage}}</base-button>
+          <sapn>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp</sapn>
+          <base-button type="info" @click="goback">back</base-button>
         </div>
       </template>
     </card>
@@ -382,22 +385,22 @@ export default {
         this.whetherMonitered? this.monitHint = '您确定要取消监测吗？您的作品被侵权后将不会被主动提醒。' :this.monitHint = '您确认要加入主动监测吗？主动监测将会在全网搜索，如果有侵犯您隐私的图片将进行实时通知。'
         this.imageInfo.push([
           {
-            name: '图像ID',
+            name: 'Picture ID',
             value: image.otherInfo.id
           },{
-            name: '图像名称',
+            name: 'Picture Name',
             value: image.title
           }, {
-            name: 'ipfs哈希值',
+            name: 'IPFS hash_value',
             value: image.ipfs_hash
           }, {
-            name: '拥有者',
+            name: 'Owner',
             value: image.owner
           }, {
-            name: '区块链Transaction ID',
+            name: 'Transaction ID',
             value: image.otherInfo.id
           }, {
-            name: '交易类型',
+            name: 'Transaction type',
             value: image.otherInfo.operation
           }
         ])

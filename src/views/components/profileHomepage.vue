@@ -1,7 +1,7 @@
 <template>
-  <section class="section section-skew">
-      <div class="container">
-          <card shadow class="card-profile mt--300" no-body>
+  <section class="section" style="background-color: #bc2963">
+      <div class="container" style="background-color: #bc2963">
+          <card shadow class="card-profile mt--300" no-body style="background-color: #bc2963">
               <div class="px-3">
                   <div class="row justify-content-center">
                       <div class="col-lg-3 order-lg-2">
@@ -36,38 +36,41 @@
                   </div>
                   <div class="text-center mt-5">
                     <base-button type="warning" @click="uploadWork" class="upload-button"><i class="ni ni-cloud-upload-96"></i>上传作品</base-button>
-                    <h3>{{ name }}
-                        <span class="font-weight-light">, {{ age }} 岁</span>
+                    <h3 style="color: #8dc4c0;font-family: 'Comic Sans MS';font-size:50px">{{ name }}
+                      <br/>
+                        <span class="font-weight-light" style="color: #8dc4c0;font-family: 'Comic Sans MS';font-size:20px">age {{ age }}</span>
                     </h3>
-                    <div class="h6 font-weight-300"><i class="ni location_pin mr-2"></i>{{ residence }}</div>
-                    <div class="h6 mt-4"><i class="ni business_briefcase-24 mr-2"></i>{{ jobTitle }}</div>
+                    <div class="h6 font-weight-300" style="color: #8dc4c0;font-family: 'Comic Sans MS';font-size:20px"><i class="ni location_pin mr-2" ></i>{{ residence }}</div>
+                    <div class="h6 mt-4" style="color: #8dc4c0;font-family: 'Comic Sans MS';font-size:15px"><i class="ni business_briefcase-24 mr-2"></i>{{ jobTitle }}</div>
                     <!-- <div><i class="ni education_hat mr-2"></i>{{ workplace }}</div> -->
                   </div>
                   <div class="mt-5 py-5 border-top text-center">
                       <div class="row justify-content-center">
-                          <div class="col-lg-9">
+                          <div class="col-lg-9" style="color: #8dc4c0;font-family: 'Comic Sans MS';font-size:20px">
                               <p>{{ self_introduction }}</p>
                           </div>
                       </div>
                   </div>
               </div>
           </card>
-          <div class="text-center mt-10 justify-content-center">
-            <tabs>
-              <tab-pane title="作品集">
+
+          <div class="text-center mt-10 justify-content-center" >
+            <tabs >
+              <tab-pane title="Portfolio" style="font-family: 'Comic Sans MS'; font-size: 20px">
                 <transition name="fade">
                   <div class="row">
-                    <card shadow class="collections col-6" v-for="(img,index) in pages" v-bind:key="index">
-                      <template v-slot:header>
-                        {{img.title}}
+                    <card shadow class="collections col-6"
+                          v-for="(img,index) in pages" :key="index">
+                      <template v-slot:header style="background-color: #25ddf5">
+                        <div style="font-family: 'Comic Sans MS'; font-size: 20px">{{img.title}}</div>
                       </template>
                       <div >
-                        <img v-bind:src="img.url" alt="index" class="collection-image">
+                        <img :src="img.url" alt="index" class="collection-image">
                       </div>
                       <template v-slot:footer>
                         <div class="row justify-content-center">
-                          <base-button type="success" @click="checkImage(img._id)">查看</base-button>
-                          <base-button type="primary" @click="editImage(img._id)">编辑</base-button>
+                          <base-button type="danger" @click="checkImage(img._id)">View</base-button>
+                          <base-button type="dark" @click="editImage(img._id)">Edit</base-button>
                         </div>
                       </template>
                     </card>
@@ -84,35 +87,42 @@
                   >
                 </base-pagination>
               </tab-pane>
-              <tab-pane title="登记作品">
 
-                <div class="row">
-                  <card shadow class="collections col-6" v-for="(img,index) in pages2" v-bind:key="index">
-                    <template v-slot:header>
-                      {{img.title}}
-                    </template>
-                    <div >
-                      <img v-bind:src="img.url" alt="index" class="collection-image">
-                    </div>
-                    <template v-slot:footer>
-                      <div class="row justify-content-center">
-                        <base-button type="success" @click="checkImage(img._id)">查看</base-button>
-                        <base-button type="primary" @click="editImage(img._id)">编辑</base-button>
-                      </div>
-                    </template>
-                  </card>
-                </div>
-                <base-pagination class="pagination-nav"
-                  :perPage="perPage"
-                  :total="registerimages.length"
-                  :align="'center'"
-                  :value="currentPage2"
-                  @input="changePage2"
-                  :key="2"
-                  >
-                </base-pagination>
-              </tab-pane>
-              <tab-pane title="监测作品">
+
+
+<!--              <tab-pane title="登记作品">-->
+
+<!--                <div class="row">-->
+<!--                  <card shadow class="collections col-6" v-for="(img,index) in pages2" v-bind:key="index">-->
+<!--                    <template v-slot:header>-->
+<!--                      {{img.title}}-->
+<!--                    </template>-->
+<!--                    <div >-->
+<!--                      <img v-bind:src="img.url" alt="index" class="collection-image">-->
+<!--                    </div>-->
+<!--                    <template v-slot:footer>-->
+<!--                      <div class="row justify-content-center">-->
+<!--                        <base-button type="danger" @click="checkImage(img._id)">View</base-button>-->
+<!--                        <base-button type="dark" @click="editImage(img._id)">Edit</base-button>-->
+<!--                      </div>-->
+<!--                    </template>-->
+<!--                  </card>-->
+<!--                </div>-->
+<!--                <base-pagination class="pagination-nav" style="color: #2e2e57"-->
+<!--                  :perPage="perPage"-->
+<!--                  :total="registerimages.length"-->
+<!--                  :align="'center'"-->
+<!--                  :value="currentPage2"-->
+<!--                  @input="changePage2"-->
+<!--                  :key="2"-->
+<!--                  >-->
+<!--                </base-pagination>-->
+<!--              </tab-pane>-->
+
+
+
+
+              <tab-pane title="Monitoring">
                   <div class="row">
                     <card shadow class="collections col-6" v-for="(img,index) in pages3" v-bind:key="index">
                       <template v-slot:header>
@@ -123,11 +133,12 @@
                       </div>
                       <template v-slot:footer>
                         <div class="row justify-content-center">
-                          <base-button type="success" @click="checkImage(img._id)">查看</base-button>
-                          <base-button type="primary" @click="editImage(img._id)">编辑</base-button>
+                          <base-button type="danger" @click="checkImage(img._id)">View</base-button>
+                          <base-button type="dark" @click="editImage(img._id)">Edit</base-button>
                         </div>
                       </template>
                     </card>
+
                   </div>
                   <base-pagination class="pagination-nav"
                     :perPage="perPage"
@@ -145,14 +156,14 @@
           </div>
       </div>
       <el-dialog
-        title="查看图片"
+        title="View"
         :visible.sync="dialogVisible"
-        width="70%"
+        width="65%"
         >
         <span><img :src="imageUrl" alt="" class="box-image"></span>
         <span slot="footer" class="dialog-footer">
-          <base-button type="secondary" @click="dialogVisible = false">取 消</base-button>
-          <base-button type="primary" @click="dialogVisible = false">确 定</base-button>
+<!--          <base-button type="light" @click="dialogVisible = false"> Confirm </base-button>-->
+          <base-button type="danger" @click="dialogVisible = false"> Confirm </base-button>
         </span>
       </el-dialog>
       <!-- <modal
@@ -214,12 +225,12 @@ export default {
       workCount: 10,
       registerCount: 5,
       monitorCount: 8,
-      name: '小明',
+      name: 'drj',
       age: 27,
       residence: '北京',
-      jobTitle: '自由摄影师',
-      workplace: 'Hypercool视觉研究院',
-      self_introduction: '大家好，我是一名自由摄影师小明，很高兴能认识大家，希望大家能够喜欢我的作品',
+      jobTitle: '自由职业者',
+      workplace: 'bupt',
+      self_introduction: 'hello',
       avatar: 'img/theme/team-4-800x800.jpg',
       images: [
           'img/theme/team-1-800x800.jpg',
@@ -236,7 +247,7 @@ export default {
           'img/theme/img-2-1200x1000.jpg',
           'img/theme/img-2-1200x1000.jpg',
       ],
-      notification: 4,
+      notification: 2,
       perPage: 4,
       left: 0,
       left2: 0,

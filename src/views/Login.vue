@@ -20,7 +20,7 @@
                                 <base-input alternative
                                             class="mb-3"
                                             placeholder="Email"
-                                            addon-left-icon="ni ni-send"
+                                            addon-left-icon="ni ni-circle-08"
                                             ref="username"
                                             v-model="loginForm.username"
                                             name="username">
@@ -46,11 +46,11 @@
                                     @click.native="newCode()"
                                     :identifyCode="identifyCode"></base-identify>
                               <!-- 记住当前用户-->
-                                <base-checkbox>
+                                <base-checkbox style="color:whitesmoke">
                                     Remember me
                                 </base-checkbox>
                                 <div class="text-center">
-                                    <base-button type="primary" class="my-4" @click.native.prevent="handleLogin">Log In</base-button>
+                                    <base-button type="primary" style=" background-color:darkred;font-family: 'Comic Sans MS';font-size: 16px" class="my-4" @click.native.prevent="handleLogin">Log In</base-button>
                                 </div>
                             </form>
                         </template>
@@ -109,14 +109,14 @@ export default {
     data() {
         const validateUsername = (rule, value, callback) => {
             if (!validUsername(value)) {
-                callback(new Error('请输入正确的用户名！'))
+                callback(new Error('Plese input the correct username'))
             } else {
                 callback()
             }
             }
             const validatePassword = (rule, value, callback) => {
             if (value.length < 6) {
-                callback(new Error('密码不能少于6个字符！'))
+                callback(new Error('The password should be no less than 6 characters!'))
             } else {
                 callback()
             }
