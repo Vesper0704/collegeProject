@@ -69,8 +69,8 @@
                       </div>
                       <template v-slot:footer>
                         <div class="row justify-content-center">
-                          <base-button type="danger" @click="checkImage(img._id)">View</base-button>
-                          <base-button type="dark" @click="editImage(img._id)">Edit</base-button>
+<!--                          <base-button type="danger" @click="checkImage(img._id)">View</base-button>-->
+                          <base-button type="danger" @click="editImage(img._id)">Edit</base-button>
                         </div>
                       </template>
                     </card>
@@ -133,8 +133,8 @@
                       </div>
                       <template v-slot:footer>
                         <div class="row justify-content-center">
-                          <base-button type="danger" @click="checkImage(img._id)">View</base-button>
-                          <base-button type="dark" @click="editImage(img._id)">Edit</base-button>
+<!--                          <base-button type="danger" @click="checkImage(img._id)">View</base-button>-->
+                          <base-button type="danger" @click="editImage(img._id)">Edit</base-button>
                         </div>
                       </template>
                     </card>

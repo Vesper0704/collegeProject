@@ -65,10 +65,10 @@ export default {
 			const isLt2M = file.size / 1024 / 1024 < 2;
 
 			if (!isJPG) {
-				this.$message.error('上传头像图片只能是 JPG 格式!');
+				this.$message.error('The uploaded avatar must be of JPG format!');
 			}
 			if (!isLt2M) {
-				this.$message.error('上传头像图片大小不能超过 2MB!');
+				this.$message.error('The uploaded avatar must be no more than 2MB!');
 			}
 			return isJPG && isLt2M;
 		},
@@ -78,7 +78,7 @@ export default {
 			const headerConfig = { headers: { 'Content-Type': 'multipart/form-data' } };
 			if (!file) {
 				// 若未选择文件
-				alert('请选择文件');
+				alert('Please choose the file!');
 				return;
 			}
 			formData.append('avatar', file.raw);
@@ -89,7 +89,7 @@ export default {
 					return this.$store.dispatch('user/getInfo');
 				})
 				.catch((err) => {
-					this.$message.error('上传用户头像失败！');
+					this.$message.error('FAIL TO UPLOAD');
 				});
 		},
 	},

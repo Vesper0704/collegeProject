@@ -87,22 +87,22 @@ export default {
           data.imageInfos.forEach(imageInfo => {
             this.imageInfo.push([
               {
-                name: '图像ID',
+                name: 'Picture ID',
                 value: imageInfo._id
               },{
-                name: '图像名称',
+                name: 'Picture name',
                 value: imageInfo.title
               }, {
-                name: 'ipfs哈希值',
+                name: 'IPFS hash_value',
                 value: imageInfo.ipfs_hash
               }, {
-                name: '拥有者',
+                name: 'Owner',
                 value: imageInfo.owner
               }, {
-                name: '区块链Transaction ID',
+                name: 'Transaction ID',
                 value: imageInfo.otherInfo.id
               }, {
-                name: '交易类型',
+                name: 'Transaction type',
                 value: imageInfo.otherInfo.operation
               }
             ])

@@ -242,11 +242,15 @@ export default {
           if(res.data.update) {
             this.whetherMonit = false
             this.whetherMonitered = true
-            this.whetherMonitered? this.monitMessage = '取消监测' : this.monitMessage = '监测'
-            this.whetherMonitered? this.monitHint = '您确定要取消监测吗？您的作品被侵权后将不会被主动提醒。' :this.monitHint = '您确认要加入主动监测吗？主动监测将会在全网搜索，如果有侵犯您隐私的图片将进行实时通知。'
+            this.whetherMonitered? this.monitMessage = 'Cancel monitoring' : this.monitMessage = 'monitor'
+            this.whetherMonitered? this.monitHint = 'Are you sure you want to cancel monitoring? After your work is infringed, ' +
+                'you will not be actively reminded。' :
+                this.monitHint = 'Are you sure you want to join active monitoring? ' +
+                    'Active monitoring will search the entire network, and real-time notifications ' +
+                    'will be made if there are pictures that violate your privacy.'
             this.$message({
               type: 'success',
-              message: '成功监控文件！'
+              message: 'Monitored Successfully!'
             })
             this.$store.dispatch('user/getInfo')
             .then(res => {
@@ -266,11 +270,17 @@ export default {
           const data = res.data
           if(data.cancel) {
             this.whetherMonitered = false
-            this.whetherMonitered? this.monitMessage = '取消监测' : this.monitMessage = '监测'
-            this.whetherMonitered? this.monitHint = '您确定要取消监测吗？您的作品被侵权后将不会被主动提醒。' :this.monitHint = '您确认要加入主动监测吗？主动监测将会在全网搜索，如果有侵犯您隐私的图片将进行实时通知。'
+            // this.whetherMonitered? this.monitMessage = '取消监测' : this.monitMessage = '监测'
+            // this.whetherMonitered? this.monitHint = '您确定要取消监测吗？您的作品被侵权后将不会被主动提醒。' :this.monitHint = '您确认要加入主动监测吗？主动监测将会在全网搜索，如果有侵犯您隐私的图片将进行实时通知。'
+            this.whetherMonitered? this.monitMessage = 'Cancel monitoring' : this.monitMessage = 'monitor'
+            this.whetherMonitered? this.monitHint = 'Are you sure you want to cancel monitoring? After your work is infringed, ' +
+                'you will not be actively reminded。' :
+                this.monitHint = 'Are you sure you want to join active monitoring? ' +
+                    'Active monitoring will search the entire network, and real-time notifications ' +
+                    'will be made if there are pictures that violate your privacy.'
             this.$message({
-              type: 'success',
-              message: '成功取消主动监测'
+              type: 'warning',
+              message: 'Monitor Cancelled!'
             })
             this.$store.dispatch('user/getInfo')
             .then(res => {
@@ -316,7 +326,7 @@ export default {
       canTransfer: false,
       whetherMonit: false,
       id: '',
-      monitMessage: '监测',
+      monitMessage: 'Monitor',
       whetherMonitered: false,
       monitHint: ''
     }
@@ -381,8 +391,14 @@ export default {
         this.imageObj = res.data.imageObj
         this.url = image.url
         this.whetherMonitered = image.whetherMonitor
-        this.whetherMonitered? this.monitMessage = '取消监测' : this.monitMessage = '监测'
-        this.whetherMonitered? this.monitHint = '您确定要取消监测吗？您的作品被侵权后将不会被主动提醒。' :this.monitHint = '您确认要加入主动监测吗？主动监测将会在全网搜索，如果有侵犯您隐私的图片将进行实时通知。'
+        //this.whetherMonitered? this.monitMessage = 'Cancel monitoring' : this.monitMessage = 'Monitor'
+        // this.whetherMonitered? this.monitHint = '您确定要取消监测吗？您的作品被侵权后将不会被主动提醒。' :this.monitHint = '您确认要加入主动监测吗？主动监测将会在全网搜索，如果有侵犯您隐私的图片将进行实时通知。'
+        this.whetherMonitered? this.monitMessage = 'Cancel monitoring' : this.monitMessage = 'monitor'
+        this.whetherMonitered? this.monitHint = 'Are you sure you want to cancel monitoring? After your work is infringed, ' +
+            'you will not be actively reminded。' :
+            this.monitHint = 'Are you sure you want to join active monitoring? ' +
+                'Active monitoring will search the entire network, and real-time notifications ' +
+                'will be made if there are pictures that violate your privacy.'
         this.imageInfo.push([
           {
             name: 'Picture ID',

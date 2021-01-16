@@ -1,12 +1,13 @@
+<!--个人信息 展示和修改 -->
 <template>
-  <div class="container">
-    <card shadow class="card-profile mt--300">
-      <template v-slot:header>
-        <div class="row justify-content-center">
-          <h3>个人信息</h3>
+  <div class="container" style="background-color: indianred">
+    <card shadow class="card-profile mt--300" style="background-color: antiquewhite">
+      <template v-slot:header >
+        <div class="row justify-content-center" >
+          <h3 style="font-family: 'Comic Sans MS'">个人信息</h3>
         </div>
       </template>
-      <div class="row justify-content-md-center">
+      <div class="row justify-content-md-center" >
         <!-- <div class="col-md-3 text-center">
           <div>用户ID</div>
           <span>账户类型</span>
@@ -17,124 +18,139 @@
           {{ id }}
         </div> -->
         <div class="col-md-6">
-          <b-list-group>
-            <b-list-group-item>
+
+         <b-list-group style="font-family: 'Comic Sans MS'">
+           <b-list-group-item style="background-color: antiquewhite">
               <div class="row">
-                <div class="col-md-3">用户ID</div>
+                <div class="col-md-3">user ID</div>
                 <div class="col-md-6">{{ info.mail }}</div>
               </div>
             </b-list-group-item>
-            <b-list-group-item>
+
+            <b-list-group-item style="background-color: antiquewhite">
               <div class="row">
-                <div class="col-md-3">总作品数量</div>
+                <div class="col-md-3"># of works</div>
                 <div class="col-md-6">{{ info.workCount }}</div>
               </div>
             </b-list-group-item>
-            <b-list-group-item>
+
+           <b-list-group-item style="background-color: antiquewhite">
               <div class="row">
-                <div class="col-md-3">昵称</div>
+                <div class="col-md-3">Nickname</div>
                 <div class="col-md-6" v-if="!changeName">{{ info.nickname }}</div>
                 <input type="text" class="form-control col-md-6" v-bind:placeholder="info.nickname" v-if="changeName" v-model="info.nickname">
-                <div class="col-md-3"> <base-button type="primary" @click="changeNickname()">更改</base-button></div>
+                <div class="col-md-3"> <base-button type="danger" @click="changeNickname()">change</base-button></div>
               </div>
             </b-list-group-item>
-            <b-list-group-item>
+
+           <b-list-group-item style="background-color: antiquewhite">
               <div class="row">
-                <div class="col-md-3">头像</div>
+                <div class="col-md-3">Avatar</div>
                 <div class="col-md-9">
-                  <image-upload></image-upload>
+                  <image-upload>
+
+                  </image-upload>
                 </div>
               </div>
             </b-list-group-item>
-            <b-list-group-item>
+
+           <b-list-group-item style="background-color: antiquewhite">
               <div class="row">
-                <div class="col-md-3">年龄</div>
+                <div class="col-md-3">Age</div>
                 <div class="col-md-6" v-if="!changeAge">{{ info.age }}</div>
                 <input type="text" class="form-control col-md-6" v-bind:placeholder="info.age" v-if="changeAge" v-model="info.age">
-                <div class="col-md-3"> <base-button type="primary" @click="changeUserAge()">更改</base-button></div>
+                <div class="col-md-3"> <base-button type="danger" @click="changeUserAge()">change</base-button></div>
               </div>
             </b-list-group-item>
-            <b-list-group-item>
+
+           <b-list-group-item style="background-color: antiquewhite">
               <div class="row">
-                <div class="col-md-3">居住地</div>
+                <div class="col-md-3">Residence</div>
                 <div class="col-md-6" v-if="!changeResidence">{{ info.residence }}</div>
                 <input type="text" class="form-control col-md-6" v-bind:placeholder="info.residence" v-if="changeResidence" v-model="info.residence">
-                <div class="col-md-3"> <base-button type="primary" @click="changeUserResidence()">更改</base-button></div>
+                <div class="col-md-3"> <base-button type="danger" @click="changeUserResidence()">change</base-button></div>
               </div>
             </b-list-group-item>
-            <b-list-group-item>
+
+           <b-list-group-item style="background-color: antiquewhite">
               <div class="row">
-                <div class="col-md-3">职位</div>
+                <div class="col-md-3">Occupation</div>
                 <div class="col-md-6" v-if="!changeJob">{{ info.jobTitle }}</div>
                 <input type="text" class="form-control col-md-6" v-bind:placeholder="info.jobTitle" v-if="changeJob" v-model="info.jobTitle">
-                <div class="col-md-3"> <base-button type="primary" @click="changeUserJob()">更改</base-button></div>
+                <div class="col-md-3"> <base-button type="danger" @click="changeUserJob()">change</base-button></div>
               </div>
             </b-list-group-item>
-            <b-list-group-item>
+
+           <b-list-group-item style="background-color: antiquewhite">
               <div class="row">
-                <div class="col-md-3">自我介绍</div>
+                <div class="col-md-3">Introduction</div>
                 <div class="col-md-6" v-if="!changeIntro">{{ info.self_introduction }}</div>
                 <input type="text" class="form-control col-md-6" v-bind:placeholder="info.self_introduction" v-if="changeIntro" v-model="info.self_introduction">
-                <div class="col-md-3"> <base-button type="primary" @click="changeUserIntro()">更改</base-button></div>
+                <div class="col-md-3"> <base-button type="danger" @click="changeUserIntro()">change</base-button></div>
               </div>
             </b-list-group-item>
-            <b-list-group-item>
-              <div class="row">
-                <div class="col-md-3">注册时间</div>
-                <div class="col-md-6">{{ info.date }}</div>
-              </div>
-            </b-list-group-item>
-             <b-list-group-item>
+
+<!--            <b-list-group-item>-->
+<!--              <div class="row">-->
+<!--                <div class="col-md-3">注册时间</div>-->
+<!--                <div class="col-md-6">{{ info.date }}</div>-->
+<!--              </div>-->
+<!--            </b-list-group-item>-->
+           <b-list-group-item style="background-color: antiquewhite">
               <div class="row">
                 <div class="col-md-3">公钥</div>
                 <div class="col-md-6">{{ info.publicKey }}</div>
               </div>
             </b-list-group-item>
-             <b-list-group-item>
+
+           <b-list-group-item style="background-color: antiquewhite">
               <div class="row">
                 <div class="col-md-3">私钥</div>
                 <div class="col-md-6">{{ privateKey }}</div>
-                <div class="col-md-3"> <base-button type="primary" @click="checkPrivKey()">查看</base-button></div>
+                <div class="col-md-3"> <base-button type="dark" @click="checkPrivKey()">View</base-button></div>
               </div>
             </b-list-group-item>
           </b-list-group>
         </div>
       </div>
-      <template v-slot:footer>
+
+      <template v-slot:footer style="background-color: #2dce89">
         <div class="row justify-content-center">
-           <base-button type="success" @click="save()">保存</base-button>
-           <base-button type="primary" @click="goback()">返回</base-button>
+           <base-button type="danger" @click="save()">save</base-button>
+          <span></span>
+           <base-button type="warning" @click="goback()">return</base-button>
         </div>
       </template>
     </card>
     <modal :show.sync="saveStatus">
-                <h6 slot="header" class="modal-title" id="modal-title-default">提醒</h6>
-
-                保存成功
+<!--      <i class="ni ni-air-baloon"></i>-->
+                <h6 slot="header" class="modal-title" id="modal-title-default"><i class="ni ni-air-baloon"></i>Note</h6>
+      <i class="ni ni-app"></i>
+               <div style="color: red;font-family: 'Comic Sans MS'">Save successfully :)</div>
 
                 <template slot="footer">
-                  <base-button type="primary" @click="goback">确定</base-button>
-                  <base-button type="secondary" class="ml-auto" @click="saveStatus=false">关闭</base-button>
+                  <base-button type="danger" @click="goback">Confirm</base-button>
+<!--                  <base-button type="dark" class="ml-auto" @click="saveStatus=false">关闭</base-button>-->
                 </template>
             </modal>
     <modal :show.sync="saveFailure"
                    gradient="danger"
                 modal-classes="modal-danger modal-dialog-centered">
-            <h6 slot="header" class="modal-title" id="modal-title-notification">警告</h6>
+            <h6 slot="header" class="modal-title" id="modal-title-notification">WARNING</h6>
 
             <div class="py-3 text-center">
                 <i class="ni ni-bell-55 ni-3x"></i>
-                <h4 class="heading mt-4">请您注意</h4>
-                <p>保存信息失败</p>
+                <h4 class="heading mt-4">Fail to save!</h4>
+
             </div>
 
             <template slot="footer">
-                <base-button type="white" @click="goback">好的知道了</base-button>
+                <base-button type="white" @click="goback">Ok, Got it!</base-button>
                 <base-button type="link"
                                 text-color="white"
                                 class="ml-auto"
                                 @click="saveFailure=false">
-                    关闭
+                    Close
                 </base-button>
             </template>
         </modal>
@@ -151,9 +167,9 @@ export default {
   data() {
     return {
       info: {
-        mail: 'crsong@bupt.edu.cn',
+        mail: 'drj@bupt.edu.cn',
         accountType: '个人账户',
-        nickname: 'Hypercool的开发者',
+        nickname: 'I am here',
         registerDate: new Date()
       },
       changeName: false,
@@ -178,7 +194,7 @@ export default {
   methods: {
     changeNickname: function() {
       if(this.changeName === true) {
-        
+
       }
       this.changeName = !this.changeName
     },
