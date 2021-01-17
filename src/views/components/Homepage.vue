@@ -30,7 +30,7 @@
                         <img src="img/brand/blockchain1.png" style="width: 2000px" class="img-fluid">
 
                       <p class="lead text-white-50 mt-4 mb-5 " style="color: navajowhite">Thanks for choosing our platform :) </p>
-                      <p class="lead text-white-50 mt-4 mb-5 " style="color: #25ddf5"> :) </p>
+                      <p class="lead text-white-50 mt-4 mb-5 " style="color: #25ddf5"> - </p>
 
                         <!-- <div class="btn-wrapper">
                             <base-button tag="a"

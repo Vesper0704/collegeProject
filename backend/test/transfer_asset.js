@@ -3,7 +3,7 @@ const driver = require('bigchaindb-driver');
 const conn = new driver.Connection(config.api_path);
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/', { useNewUrlParser: true });
-const Image = require('../models/image');
+const Image = require('../models/imageModel');
 const publicKey = 'B9FbvxCYytcyxRgzB6SK2ibiYNQjB7MXyNP4MrxMgrS2';
 const privateKey = 'HXQQmYkPxEUhbdqdhDA6LYzUGz6WFT5Xyc9WX3QmYALa';
 const transactionID = '91a3f1b630e4b92650cedb964a7c88b27ee3ed6a09e1dfc3410971f190d95581';

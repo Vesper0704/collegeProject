@@ -120,24 +120,23 @@
     </modal>
 
     <modal :show.sync="whetherMonit"
-            gradient="danger"
+            gradient="dark"
             modal-classes="modal-danger modal-dialog-centered">
-      <h6 slot="header" class="modal-title" id="modal-title-notification">主动监测</h6>
+      <h6 slot="header" class="modal-title" id="modal-title-notification">Activate Monitoring</h6>
 
       <div class="py-3 text-center">
-          <i class="ni ni-bell-55 ni-3x"></i>
-          <h4 class="heading mt-4">警告</h4>
-          <p>{{ monitHint }}</p>
+          <i class="ni ni-atom ni-5x"></i>
+          <p style="font-family: 'Comic Sans MS'">{{ monitHint }}</p>
       </div>
 
       <template slot="footer">
-          <base-button type="white" @click="activeMonit">确认</base-button>
-          <base-button type="link"
-                        text-color="white"
-                        class="ml-auto"
-                        @click="whetherMonit=false">
-              取消
-          </base-button>
+        <base-button type="white" @click="activeMonit">Confirm</base-button>
+        <base-button type="dark"
+                     text-color="white"
+                     class="ml-auto"
+                     @click="whetherMonit=false">
+          Maybe Next Time
+        </base-button>
       </template>
     </modal>
   </div>
@@ -275,7 +274,7 @@ export default {
             this.whetherMonitered? this.monitMessage = 'Cancel monitoring' : this.monitMessage = 'monitor'
             this.whetherMonitered? this.monitHint = 'Are you sure you want to cancel monitoring? After your work is infringed, ' +
                 'you will not be actively reminded。' :
-                this.monitHint = 'Are you sure you want to join active monitoring? ' +
+                this.monitHint = 'Are you sure you want to join active monitoring?' +
                     'Active monitoring will search the entire network, and real-time notifications ' +
                     'will be made if there are pictures that violate your privacy.'
             this.$message({

@@ -81,7 +81,8 @@ export default {
         if(data.upload) {
           this.$message({
             type: 'success',
-            message: '上传成功'
+            //上传成功
+            message: 'Upload success :)'
           })
           console.log(data)
           data.imageInfos.forEach(imageInfo => {

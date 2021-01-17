@@ -1,34 +1,101 @@
-/**
- * This is the controllers logic of the hypercool project
- * @author Jason Song created at 2019-10-27 10:41:00
+/*
+controller methods of all functions in the project
  */
 
-const User = require('../models/user');
-const Image = require('../models/image');
-const Article = require('../models/article');
+
+
+const User = require('../models/userModel');
+const Image = require('../models/imageModel');
+const Article = require('../models/articleModel');
+
+/*
+记录日志
+ */
 const Logger = require('../utils/logger');
 const logger = new Logger();
+
+/*
+crypto 模块提供了加密功能，包括对 OpenSSL 的哈希、HMAC、加密、解密、签名、以及验证功能的一整套封装
+ */
 const crypto = require('crypto');
+/*
+获取一些配置参数
+ */
 const config = require('../config/config').config;
+
+/*
+获取ipfs-api    使用的话预装python /usr/bin/python
+ */
 const ipfsAPI = require('ipfs-api');
+/*
+配置参数 端口协议等
+ */
 const ipfs = ipfsAPI({ host: 'localhost', port: '5001', protocol: 'http' });
+
+
+/*
+http://nodejs.cn/api/fs.html
+ */
 const fs = require('fs');
+
+/*
+从' bigchaindb-driver '导入驱动程序
+ */
 const driver = require('bigchaindb-driver');
+//api_path: 'http://127.0.0.1:9984/api/v1/',
 const conn = new driver.Connection(config.api_path);
 
+
 const imghash = require('imghash');
+/*imghash的一些用法
+imghash
+  .hash('path/to/file')
+  .then((hash) => {
+    console.log(hash); // 'f884c4d8d1193c07' 默认hex
+  });
+
+// Custom hex length and result in binary
+imghash
+  .hash('path/to/file', 4, 'binary')
+  .then((hash) => {
+    console.log(hash); // '1000100010000010'
+  });
+ */
+
+/*
+Measure the difference between two strings
+One of the fastest JS implementations of the Levenshtein distance algorithm
+编辑距离（Edit Distance），又称Levenshtein距离，是指两个字串之间，由一个转成另一个所需的最少编辑操作次数。
+许可的编辑操作包括:
+将一个字符替换成另一个字符，插入一个字符，删除一个字符。
+一般来说，编辑距离越小，两个串的相似度越大。
+ */
 const leven = require('leven');
+
+/*
+Bluebird is a fully featured promise library with focus on innovative features and performance
+ */
 const Promise = require('bluebird');
+
+/*
+used to delete some files gracefully
+ */
 const unlinkFile = Promise.promisify(fs.unlinkSync);
+
 const assert = require('assert');
+
 /**
  * handle login
  * @param {Obj} req username and password of user, now plain text
  * @param {Obj} res code http status, data for login and message
  * @param {middleware} next not used
  */
+
 async function login(req, res, next) {
-	const { username, password } = req.body;
+	const { username, password } = req.body;  //获取请求体
+
+
+	//console.log(req.body);
 	if (username === '' || password === '') {
 		res.send({
 			code: 20000,
@@ -40,7 +107,35 @@ async function login(req, res, next) {
 	}
 	try {
 		const user = await User.findOne({ username: username });
-		if (user) {
+
+		//test to get all of the user info
+		User.find({ },function (err,docs) {
+			if(err){
+				console.log('find err:',err);
+				return;
+			}
+			console.log('result:',docs);
+		});
+
+		Image.find({ },function (err,docs) {
+			if(err){
+				console.log('find err:',err);
+				return;
+			}
+			console.log('image result:',docs);
+		});
+
+		// Article.find({ },function (err,docs) {
+		// 	if(err){
+		// 		console.log('find err:',err);
+		// 		return;
+		// 	}
+		// 	console.log('article result:',docs);
+		// });
+
+
+		if (user)
+		{
 			if (user['password'] === password) {
 				const d = crypto.createHash('md5').update(username + password + new Date().toISOString());
 				const token = d.digest('hex');
@@ -70,7 +165,9 @@ async function login(req, res, next) {
 					},
 				});
 			}
-		} else {
+		}
+
+		else {
 			res.send({
 				code: 20000,
 				data: {
@@ -79,7 +176,10 @@ async function login(req, res, next) {
 				},
 			});
 		}
-	} catch (err) {
+	}
+
+
+	catch (err) {
 		logger.warnLog(err);
 		res.send({
 			code: 20000,
@@ -151,7 +251,7 @@ async function register(req, res, next) {
 		workCount: 0,
 		registerCount: 0,
 		monitorCount: 0,
-		age: 73,
+		age: 20,
 		residence: 'undefined',
 		jobTitle: 'undefined',
 		workplace: 'undefined',
@@ -336,7 +436,8 @@ async function multiUpload(req, res, next) {
 					data: {
 						upload: false,
 						similarity: err.similarity,
-						message: 'The system monitors that the similarity of your uploaded pictures has reached ' + percent + '%，上传失败',
+						//上传失败
+						message: 'The system monitors that the similarity of your uploaded pictures has reached ' + percent + '%.  Fail to upload!',
 					},
 				});
 				break;

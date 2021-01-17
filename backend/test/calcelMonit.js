@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/', { useNewUrlParser: true });
-const User = require('../models/user');
-const Image = require('../models/image');
+const User = require('../models/userModel');
+const Image = require('../models/imageModel');
 
 async function main() {
 	const mail = 'crsong@bupt.edu.cn';

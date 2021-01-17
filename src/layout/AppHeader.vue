@@ -2,7 +2,8 @@
 	<header class="header-global">
 		<base-nav class="navbar-main" transparent type="" effect="light" expand>
 			<router-link slot="brand" class="navbar-brand mr-lg-5" to="/">
-				<img src="img/brand/blockchain2.png" alt="logo" />
+<!--				<img src="img/brand/blockchain2.png" alt="" />-->
+        <i class="ni ni-atom ni-archive-2"></i>
 			</router-link>
 
 			<ul class="navbar-nav navbar-nav-hover align-items-lg-center">

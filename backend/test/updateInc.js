@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/', { useNewUrlParser: true });
-const User = require('../models/user');
+const User = require('../models/userModel');
 
 User.updateOne(
 	{ username: 'crsong@bupt.edu.cn' },

@@ -35,7 +35,8 @@
                       </div>
                   </div>
                   <div class="text-center mt-5">
-                    <base-button type="warning" @click="uploadWork" class="upload-button"><i class="ni ni-cloud-upload-96"></i>上传作品</base-button>
+                    <base-button type="warning" @click="uploadWork" class="upload-button">
+                      <i class="ni ni-cloud-upload-96 ni-1x"></i> <span>&nbsp;&nbsp;</span> Upload</base-button>
                     <h3 style="color: #8dc4c0;font-family: 'Comic Sans MS';font-size:50px">{{ name }}
                       <br/>
                         <span class="font-weight-light" style="color: #8dc4c0;font-family: 'Comic Sans MS';font-size:20px">age {{ age }}</span>
@@ -122,7 +123,7 @@
 
 
 
-              <tab-pane title="Monitoring">
+              <tab-pane title="Monitoring" style="font-family: 'Comic Sans MS'; font-size: 20px">
                   <div class="row">
                     <card shadow class="collections col-6" v-for="(img,index) in pages3" v-bind:key="index">
                       <template v-slot:header>

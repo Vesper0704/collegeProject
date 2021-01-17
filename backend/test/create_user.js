@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/', { useNewUrlParser: true });
-const User = require('../models/user');
+const User = require('../models/userModel');
 const driver = require('bigchaindb-driver');
 const keys = new driver.Ed25519Keypair();
 console.log(keys);
