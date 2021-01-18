@@ -437,7 +437,7 @@ async function multiUpload(req, res, next) {
 						upload: false,
 						similarity: err.similarity,
 						//上传失败
-						message: 'The system monitors that the similarity of your uploaded pictures has reached ' + percent + '%.  Fail to upload!',
+						message: 'The system monitors that the similarity of your uploaded picture has reached ' + percent + '%.',
 					},
 				});
 				break;

@@ -28,7 +28,7 @@
     </el-dialog>
     <br/>
     <base-button type="danger" class="upload-button" @click="submitUpload">upload</base-button>
-    <span>&nbsp;&nbsp;&nbsp;&nbsp</span>
+    <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
     <span></span>
     <base-button type="dark" class="upload-button" @click="goback">back</base-button>
 
@@ -76,7 +76,7 @@ export default {
       formData.append('mail', info.mail)
 
       axios.post('http://127.0.0.1:3000/users/multiUpload', formData, headerConfig).then(res => {
-        const data = res.data.data
+        const data = res.data.data //从后端接收到的相关信息
         console.log(res)
         if(data.upload) {
           this.$message({
@@ -90,30 +90,43 @@ export default {
               {
                 name: 'Picture ID',
                 value: imageInfo._id
-              },{
+              },
+              {
                 name: 'Picture name',
                 value: imageInfo.title
-              }, {
+              },
+              {
                 name: 'IPFS hash_value',
                 value: imageInfo.ipfs_hash
-              }, {
+              },
+              {
                 name: 'Owner',
                 value: imageInfo.owner
-              }, {
+              },
+              {
                 name: 'Transaction ID',
                 value: imageInfo.otherInfo.id
-              }, {
+              },
+              {
                 name: 'Transaction type',
                 value: imageInfo.otherInfo.operation
               }
             ])
           })
           return this.$store.dispatch('user/getInfo')
-        } else {
+        }
+        //上传失败
+        else {
           if(typeof(data['message']) !== 'undefined') {
-            this.$message.error(data['message'])
-          } else {
-             this.$message.error('上传文件失败')
+            this.$message({
+              type:'error',
+              message:data['message']+'<br/><br/><div> Fail to upload :( </div>',
+              dangerouslyUseHTMLString: true,
+            })
+
+          }
+          else {
+             this.$message.error('Upload Failure')
           }
         }
 
