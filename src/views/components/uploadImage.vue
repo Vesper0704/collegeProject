@@ -6,6 +6,7 @@
       --Upload your picture here--<br/>
     </h3>
     <br/>
+<!--    上传按钮 el-upload组件-->
     <el-upload
       :before-upload="beforeUpload"
       action="#"
@@ -15,7 +16,6 @@
       :file-list="fileList"
       :on-preview="handlePictureCardPreview"
       :on-remove="handleRemove"
-      multiple
       >
       <i class="el-icon-add-location"></i>
     </el-upload>
@@ -73,8 +73,10 @@ export default {
       this.fileList.forEach(file => {
         formData.append('files', file)
       })
+      //加上用户的邮箱
       formData.append('mail', info.mail)
 
+      //发送请求
       axios.post('http://127.0.0.1:3000/users/multiUpload', formData, headerConfig).then(res => {
         const data = res.data.data //从后端接收到的相关信息
         console.log(res)
@@ -125,6 +127,7 @@ export default {
             })
 
           }
+
           else {
              this.$message.error('Upload Failure')
           }
@@ -142,6 +145,7 @@ export default {
       this.fileList.push(file)
     },
     goback() {
+      //返回上一个页面
       this.$router.go(-1)
     }
   }

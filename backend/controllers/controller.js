@@ -42,6 +42,7 @@ const fs = require('fs');
 从' bigchaindb-driver '导入驱动程序
  */
 const driver = require('bigchaindb-driver');
+
 //api_path: 'http://127.0.0.1:9984/api/v1/',
 const conn = new driver.Connection(config.api_path);
 
@@ -91,6 +92,13 @@ const assert = require('assert');
  * @param {middleware} next not used
  */
 
+
+//async 函数返回一个promise　对象
+// promise要么会通过一个由async函数返回的值被解决，要么会通过一个从async函数中抛出的（或其中没有被捕获到的）异常被拒绝。
+/*
+一个不含await表达式的async函数是会同步运行的。
+然而，如果函数体内有一个await表达式，async函数就一定会异步执行。
+ */
 async function login(req, res, next) {
 	const { username, password } = req.body;  //获取请求体
 
@@ -133,21 +141,33 @@ async function login(req, res, next) {
 		// 	console.log('article result:',docs);
 		// });
 
-
+//该用户存在
 		if (user)
 		{
+			//密码正确
 			if (user['password'] === password) {
-				const d = crypto.createHash('md5').update(username + password + new Date().toISOString());
-				const token = d.digest('hex');
-				User.updateOne({ username: username }, { $set: { token: token } }).then((doc, err) => {
+				/*
+				基于 Token 的方案中，服务端根据用户身份信息生成 Token，发放给客户端。
+				客户端收好 Token，并在之后的数据请求中带上 Token，
+				服务端接到请求后校验并解析 Token 得出用户身份
+				 */
+
+				//根据用户名密码和登陆时间产生token   MD-5算法
+				const mdhash = crypto.createHash('md5').update(username + password + new Date().toISOString());
+				const token = mdhash.digest('hex');
+				//更新用户信息的token
+				User.updateOne({ username: username }, { $set: { token: token } })
+					.then((doc, err) => {
 					if (doc) {
-						logger.infoLog(`write user ${username} succefully`);
+						logger.infoLog(`user ${username} token updated successfully`);
 					}
 					if (err) {
 						console.error(err);
-						logger.warnLog('failed update user');
+						logger.warnLog('fail to update user');
 					}
 				});
+
+
 				res.send({
 					code: 20000,
 					data: {
@@ -156,12 +176,15 @@ async function login(req, res, next) {
 						token: token,
 					},
 				});
-			} else {
+			}
+
+			else
+			{
 				res.send({
 					code: 20000,
 					data: {
 						login: false,
-						message: 'wrong password',
+						message: 'wrong password :(',
 					},
 				});
 			}
@@ -172,12 +195,11 @@ async function login(req, res, next) {
 				code: 20000,
 				data: {
 					login: false,
-					message: 'no such user!',
+					message: 'User not found :(',
 				},
 			});
 		}
 	}
-
 
 	catch (err) {
 		logger.warnLog(err);
@@ -185,7 +207,7 @@ async function login(req, res, next) {
 			code: 20000,
 			data: {
 				login: false,
-				message: 'internal error!',
+				message: 'Internal Server Error!',
 			},
 		});
 	}
@@ -193,23 +215,34 @@ async function login(req, res, next) {
 
 /**
  * retrieve user information by token
- * @param {string} req token representing the user
- * @param {json} res user information
- * @param {function} next middleware
+ * @param {string} req :token representing the user
+ * @param {json} res :user information
+ * @param {function} next :middleware
  */
 async function getInfo(req, res, next) {
+/*
+req.query 此方法多适用于GET请求，解析GET里的参数
+ */
 	const { token } = req.query;
+
 	try {
+		/*
+		填充 类似于连接查询
+		 */
 		const info = await User.findOne({ token: token })
 			.populate('monitorimages')
 			.populate('allimages')
 			.populate('articles');
+/*
+找到该用户信息
+ */
 		if (info) {
 			res.send({
 				code: 20000,
 				data: info,
 			});
-		} else {
+		}
+		else {
 			res.send({
 				code: 20000,
 				data: {
@@ -218,7 +251,9 @@ async function getInfo(req, res, next) {
 				},
 			});
 		}
-	} catch (err) {
+	}
+
+	catch (err) {
 		res.send({
 			code: 20000,
 			data: {
@@ -226,27 +261,36 @@ async function getInfo(req, res, next) {
 				message: "can't retrieve data",
 			},
 		});
-		logger.warnLog('error retrieve user information' + __filename + 'line 113');
+		logger.warnLog('error retrieve user information' + __filename);
 	}
 }
 
 /**
- * register user
- * @param {Obj} req containing basic informations
+ * register  sign up to the system
+ * @param {Obj} req containing basic information
  * @param {String} res token after register
  * @param {Func} next middleware
  */
 async function register(req, res, next) {
+
 	const { username, mail, password } = req.body;
-	const d = crypto.createHash('md5').update(username + password + new Date().toISOString());
+	const mdhash = crypto.createHash('md5').update(username + password + new Date().toISOString());
+	const token = mdhash.digest('hex');
+	//Ed25519 is a public-key signature system
+	/*
+	生成公私钥对
+	 */
 	const keys = new driver.Ed25519Keypair();
-	const token = d.digest('hex');
+
+	/*
+	生成实例 存入mongodb
+	 */
 	const user = new User({
 		username: mail,
 		mail: mail,
 		password: password,
 		token: token,
-		avatar: `${config.serverUrl}/images/user.svg`,
+		avatar: `${config.serverUrl}/images/user.svg`, //默认头像
 		nickname: username,
 		workCount: 0,
 		registerCount: 0,
@@ -256,10 +300,12 @@ async function register(req, res, next) {
 		jobTitle: 'undefined',
 		workplace: 'undefined',
 		self_introduction: 'Say something here to get to know others quickly!',
+		//新用户初始化
 		allimages: [],
 		registerimages: [],
 		monitorimages: [],
 		notification: 0,
+		//公钥私钥
 		publicKey: keys.publicKey,
 		privateKey: keys.privateKey,
 	});
@@ -269,16 +315,17 @@ async function register(req, res, next) {
 				code: 20000,
 				data: {
 					status: false,
-					message: 'error while registering',
+					message: 'ERROR when registering',
 				},
 			});
-			logger.warnLog('error retrieve user information' + __filename + 'line 149' + err);
-		} else {
+			logger.warnLog('ERROR when registering'+err);
+		}
+		else {
 			res.send({
 				code: 20000,
 				data: {
 					status: true,
-					message: 'successfully registered',
+					message: 'User has successfully registered',
 					token: token,
 				},
 			});
@@ -296,7 +343,9 @@ async function whetherRegister(req, res, next) {
 	const { email } = req.body;
 	console.log(req.body);
 	try {
+		//查找到一个就返回
 		const user = await User.findOne({ mail: email });
+		//找到就是已经注册过了
 		if (user) {
 			res.send({
 				code: 20000,
@@ -304,7 +353,8 @@ async function whetherRegister(req, res, next) {
 					exist: true,
 				},
 			});
-		} else {
+		}
+		else {
 			res.send({
 				code: 20000,
 				data: {
@@ -312,8 +362,9 @@ async function whetherRegister(req, res, next) {
 				},
 			});
 		}
-	} catch (err) {
-		logger.warnLog('error in whetherRegister in line 196' + err);
+	}
+	catch (err) {
+		logger.warnLog('Error in check duplication of emails' + err);
 		res.send({
 			code: 20000,
 			data: {
@@ -324,7 +375,7 @@ async function whetherRegister(req, res, next) {
 }
 
 /**
- * set information for users in editProfile page
+ *Allow users to set their information
  * @param {JSON} req information that the user what to save
  * @param {JSON} res whether the user successed
  * @param {func} next middleware
@@ -333,7 +384,7 @@ async function setInfo(req, res, next) {
 	const { mail, nickname, age, residence, jobTitle, self_introduction } = req.body;
 	try {
 		const result = await User.update(
-			{ mail: mail },
+			{ mail: mail }, //primary key to find the user
 			{
 				$set: {
 					nickname: nickname,
@@ -344,6 +395,7 @@ async function setInfo(req, res, next) {
 				},
 			}
 		);
+		//更新成功
 		if (result) {
 			res.send({
 				code: 20000,
@@ -352,7 +404,9 @@ async function setInfo(req, res, next) {
 				},
 			});
 		}
-	} catch (err) {
+	}
+
+	catch (err) {
 		logger.warnLog('error while updating user' + err);
 		res.send({
 			code: 20000,
@@ -364,7 +418,7 @@ async function setInfo(req, res, next) {
 }
 
 /**
- * handle user upload avatar
+ * allow users to update their avatar
  * @param {mail, file} req mail and the avatar of user
  * @param {Boolean} res whether upload avatar succeeded or not
  * @param {func} next middleware
@@ -375,14 +429,16 @@ async function handleUpload(req, res, next) {
 	try {
 		if (req.file) {
 			const result = await User.updateOne({ mail: mail }, { $set: { avatar: imgUrl } });
-			if (result) {
+			if (result)
+			{
 				res.send({
 					code: 20000,
 					data: {
 						upload: true,
 					},
 				});
-			} else {
+			}
+			else {
 				res.send({
 					code: 20000,
 					data: {
@@ -391,8 +447,9 @@ async function handleUpload(req, res, next) {
 				});
 			}
 		}
-	} catch (err) {
-		logger.warnLog('error while saving avatar image' + err);
+	}
+	catch (err) {
+		logger.warnLog('error in updating avatar' + err);
 		res.send({
 			code: 20000,
 			data: {
@@ -402,14 +459,27 @@ async function handleUpload(req, res, next) {
 	}
 }
 
+/**
+ * 上传图片
+ * @param req
+ * @param res
+ * @param next
+ *
+ */
 async function multiUpload(req, res, next) {
 	const { mail } = req.body;
 
 	try {
+		//arr保存了上传的图片的信息
 		const { arr, infoArr } = await multiUploadInner(req.files, mail);
 		// const user = await User.findOne({'mail': mail})
+
+
+		//返回解决结果true/false
 		const saveResult = await saveImageArr(arr, mail);
 		// const result = await user.save()
+
+
 		if (saveResult) {
 			res.send({
 				code: 20000,
@@ -418,7 +488,10 @@ async function multiUpload(req, res, next) {
 					imageInfos: arr,
 				},
 			});
-		} else {
+		}
+
+		//保存失败
+		else {
 			res.send({
 				code: 20000,
 				data: {
@@ -426,9 +499,13 @@ async function multiUpload(req, res, next) {
 				},
 			});
 		}
-	} catch (err) {
+	}
+	catch (err) {
+		console.log('error in multiUpload:'+err)
 		logger.warnLog('error in multiUpload' + err);
+
 		switch (err.type) {
+			//type=100 说明是相似度过高
 			case 100:
 				const percent = err.similarity * 100;
 				res.send({
@@ -441,6 +518,7 @@ async function multiUpload(req, res, next) {
 					},
 				});
 				break;
+
 			case 101:
 				res.send({
 					code: 20000,
@@ -455,22 +533,33 @@ async function multiUpload(req, res, next) {
 }
 
 /**
- * inner function to save all images
+ *  save all images
  * @param {array} arr all image files
  * @param {String} mail is user id
  */
-function saveImageArr(arr, mail) {
+function saveImageArr(imgArr, mail) {
 	return new Promise((resolve, reject) => {
 		let flag = 0;
-		arr.forEach(async (img) => {
+		imgArr.forEach(async (img) => {
 			try {
-				await User.updateOne({ mail: mail }, { $push: { allimages: img._id }, $inc: { workCount: 1 } });
-			} catch (err) {
-				logger.warnLog('error while saveImageArr: ' + err);
+				/*
+				$push: 把value追加到field里面去，field一定要是数组类型才行，如果field不存在，会新增一个数组类型加进去
+				$inc可以对文档的某个值为数字型（只能为满足要求的数字）的键进行增减的操作。
+				 */
+				await User.updateOne({ mail: mail },
+					{
+						$push: { allimages: img._id },
+						$inc: { workCount: 1 }
+					});
+			}
+
+			catch (err) {
+				logger.warnLog('Error while saving images' + err);
 				resolve(false);
 			}
 			flag++;
-			if (flag === arr.length) {
+			//全部存入
+			if (flag === imgArr.length) {
 				resolve(true);
 			}
 		});
@@ -478,10 +567,13 @@ function saveImageArr(arr, mail) {
 }
 /**
  * inner function to update
- * @param {array} files upload image files
- * @param {string} mail email of user
+ * @param {array}  upload image files
+ * @param {string} email of user
  */
 function multiUploadInner(files, mail) {
+	/*
+	解决 或是因为某种原因拒绝
+	 */
 	return new Promise((resolve, reject) => {
 		const arr = [];
 		const infoArr = [];
@@ -490,68 +582,115 @@ function multiUploadInner(files, mail) {
 		files.forEach(async (file) => {
 			let imgUrl = `${config.serverUrl}/images/${file.filename}`;
 			try {
-				let user = await User.findOne({ mail: mail });
-				let hashArr = await ipfs.add(fs.readFileSync(`${file.destination}/${file.filename}`));
-				let hash = hashArr[0].hash;
-				let publicKey = user.publicKey;
-				let privateKey = user.privateKey;
-				let assetData = {
-					img: {
-						url: imgUrl,
-						ipfs_hash: hash,
-					},
-				};
-				let metaData = {
-					transfer: 'earth',
-				};
-				let txCreateSimple = driver.Transaction.makeCreateTransaction(
-					assetData,
-					metaData,
+				//找到用户
+			let user = await User.findOne({ mail: mail });
 
-					// A transaction needs an output
-					[driver.Transaction.makeOutput(driver.Transaction.makeEd25519Condition(publicKey))],
-					publicKey
-				);
-				let txCreateSimpleSigned = driver.Transaction.signTransaction(txCreateSimple, privateKey);
-				let otherInfo = await conn.postTransactionCommit(txCreateSimpleSigned);
+			//读取文件
+			/*
+			If the file's content changes, the hash will change,
+			but if the file's content remains the same, the hash will always be the same.
+			Bear in mind that if you're not running the daemon,
+			it will just add locally. If you start the daemon later,
+			 the blocks will be advertised after a few seconds when the re-provider runs.
+			 */
+			let hashArr = await ipfs.add(fs.readFileSync(`${file.destination}/${file.filename}`));
 
-				// calculate phash
-				const phash = await imghash.hash(`${file.destination}/${file.filename}`);
+			let hash = hashArr[0].hash;
 
-				// whether same image with other image
-				const images = await Image.find({});
-				for (let item in images) {
-					const simi = leven(images[item]['phash'], phash);
-					if (simi <= 10) {
-						unlinkFile(`${file.destination}/${file.filename}`);
-						let similarity = 1 - simi / 29;
-						reject({
-							type: 100,
-							similarity: similarity,
-							message: 'the two images are similar',
-						});
-						break;
-					}
+			let publicKey = user.publicKey;
+			let privateKey = user.privateKey;
+
+			let assetData = {
+				img: {
+					url: imgUrl,
+					ipfs_hash: hash,
+				},
+			};
+
+			let metaData = {
+				transfer: 'earth',
+			};
+
+			/*
+			创建transaction　
+			 */
+			let txCreateSimple = driver.Transaction.makeCreateTransaction(
+				assetData,
+				metaData,
+
+				// A transaction needs an output
+				[driver.Transaction.makeOutput(driver.Transaction.makeEd25519Condition(publicKey))],
+
+				publicKey
+			);
+			/*
+			用这个用户的私钥签名， 可以用公钥来验证签名
+			 */
+			let txCreateSimpleSigned = driver.Transaction.signTransaction(txCreateSimple, privateKey);
+
+			//Send the transaction off to BigchainDB
+			let Info = await conn.postTransactionCommit(txCreateSimpleSigned);
+
+			// calculate phash of the picture
+			const phash = await imghash.hash(`${file.destination}/${file.filename}`);
+
+			// check duplication  similarity
+			const images = await Image.find({});  //找出所有的图片
+
+			for (let item in images) {
+				//计算phash之间的编辑距离
+				const simi = leven(images[item]['phash'], phash);
+
+				//距离越小 相似度越高
+				if (simi <= 10) {
+					/*
+					删除这个图片
+					 */
+					unlinkFile(`${file.destination}/${file.filename}`);
+					let similarity = 1 - simi / 29;
+					/*
+					拒绝 函数返回 后续不再执行 直接跳到catch
+					 */
+					reject({
+						//返回错误类型 方便判断
+						type: 100,
+						similarity: similarity,
+						message: 'Similarity warning!',
+					});
+					break;
 				}
+			}
+			/*
+			允许上传
+			 */
 				let img = new Image({
 					url: imgUrl,
 					title: file.originalname,
 					owner: mail,
 					ipfs_hash: hash,
-					otherInfo: otherInfo,
+					otherInfo: Info,
 					phash: phash,
 				});
-				infoArr.push(otherInfo);
+
+				infoArr.push(Info);
+
 				let result = await img.save();
+
+				//结果存入数组
 				arr.push(img);
 				flag += 1;
 				if (flag === length) {
+					/*
+					解决 返回
+					 */
 					resolve({ arr: arr, infoArr: infoArr });
 				}
-			} catch (err) {
+			}
+			catch (err) {
 				logger.warnLog('error in multiUpload' + err);
 				console.log(err);
 				reject({
+					//错误类型101
 					type: 101,
 					message: err,
 				});
@@ -561,7 +700,7 @@ function multiUploadInner(files, mail) {
 }
 
 /**
- * api for article uploading
+ *  article uploading
  * @param {Obj} req message details
  * @param {Obj} res whether successfully upload
  * @param {func} next middleware
@@ -608,71 +747,121 @@ async function uploadArticle(req, res, next) {
 	}
 }
 
+/**
+ * 查询图片信息
+ * @param req
+ * @param res
+ * @param next
+ * @returns {bluebird<void>}
+ */
 async function getImage(req, res, next) {
 	const { token, mail, id } = req.body;
 	try {
 		const user = await User.findOne({ mail: mail });
+
 		if (token === user.token) {
+
 			const image = await Image.findById(id);
 			if (image) {
 				res.send({
 					code: 20000,
 					data: {
-						imageObj: image,
-						whetherImage: true,
+						imageObj: image,   //返回图片完整信息
+						whetherImage: true, //是否找到该图片
 					},
 				});
-			} else {
+			}
+
+			else {
 				res.send({
 					code: 20000,
 					data: {
 						whetherImage: false,
-						message: '找不到该图片，请联系系统管理员',
+						//找不到该图片
+						message: `Couldn't find the image`,
 					},
 				});
 			}
-		} else {
+		}
+
+		//token不匹配
+		else {
 			res.send({
 				code: 20000,
 				data: {
 					whetherImage: false,
-					message: '请您重新登录，您的登录已经过期！',
+					//请您重新登录，您的登录已经过期！
+					message: 'Please log in again!',
 				},
 			});
 		}
-	} catch (err) {
-		logger.warnLog('error in getImage: ' + err);
+	}
+
+	catch (err) {
+		logger.warnLog('Error occurred when searching images ' + err);
 		res.send({
 			code: 20000,
 			data: {
 				whetherImage: false,
-				message: '在找图片时发生错误',
+				//'在找图片时发生错误'
+				message: 'Error occurred when searching...',
 			},
 		});
 	}
 }
 
+
+/**
+ * 实现转让功能
+ * @param req from the web
+ * @param res  {response}
+ * @param next - no need
+ * @returns
+ */
 async function transferAsset(req, res, next) {
+	console.log('transfer info  '+req.body)
 	const { publicKey, privateKey, transferTo, imageID } = req.body;
 	try {
+
 		const image = await Image.findById(imageID);
+
+        //get info from bigchaindb
+		// otherInfo = await conn.postTransactionCommit(txCreateSimpleSigned);
 		const asset = await conn.getTransaction(image.otherInfo.id);
+
+
 		const transferToElse = driver.Transaction.makeTransferTransaction(
 			[{ tx: asset, output_index: 0 }],
 			[driver.Transaction.makeOutput(driver.Transaction.makeEd25519Condition(transferTo))]
 		);
+
+		/*
+		进行转让的人的私钥签名
+		 */
 		let txCreateSimpleSigned = driver.Transaction.signTransaction(transferToElse, privateKey);
+
+
+		/*
+		发布到bigchain
+		 */
 		const transResult = await conn.postTransactionCommit(txCreateSimpleSigned);
 
 		// update the image object
 		const updateImg = await Image.updateOne({ _id: imageID }, { $set: { otherInfo: transResult } });
 
 		// update the users
+		//The $pull operator removes from an existing array all instances of a value or values
+		// that match a specified condition
 		const updateSeller = await User.updateOne({ publicKey: publicKey }, { $pull: { allimages: image._id } });
 
 		// update the receiver
+		//放入接受者的数据表中
 		const updateReceiver = await User.updateOne({ publicKey: transferTo }, { $push: { allimages: imageID } });
 
+
+		/*
+		transfer success!
+		 */
 		if (updateSeller && updateReceiver) {
 			res.send({
 				code: 20000,
@@ -680,7 +869,10 @@ async function transferAsset(req, res, next) {
 					transfer: true,
 				},
 			});
-		} else {
+		}
+
+		//failure
+		else {
 			res.send({
 				code: 20000,
 				data: {
@@ -688,7 +880,9 @@ async function transferAsset(req, res, next) {
 				},
 			});
 		}
-	} catch (err) {
+	}
+
+	catch (err) {
 		logger.warnLog('error while transferring images to user: ' + err);
 		res.send({
 			code: 20000,
@@ -699,19 +893,31 @@ async function transferAsset(req, res, next) {
 	}
 }
 
+/**
+ *
+ * @param req
+ * @param res
+ * @param next
+ * @returns
+ */
 async function monitImage(req, res, next) {
 	const { mail, token, imageID } = req.body;
 	try {
+
 		const user = await User.findOne({ mail: mail, token: token });
 		const image = await Image.findById(imageID);
 
 		if (user && image) {
-			// if both exist
+			// if both are valid
+
 			const pushResult = await User.updateOne(
 				{ mail: mail },
-				{ $push: { monitorimages: image._id }, $inc: { monitorCount: 1 } }
+				{ $push: { monitorimages: image._id },
+					$inc: { monitorCount: 1 }  //monitor number  +1
+				}
 			);
 			const monitResult = await Image.updateOne({ _id: imageID }, { $set: { whetherMonitor: true } });
+
 			if (pushResult && monitResult) {
 				res.send({
 					code: 20000,
@@ -719,7 +925,9 @@ async function monitImage(req, res, next) {
 						update: true,
 					},
 				});
-			} else {
+			}
+
+			else {
 				logger.warnLog(new Error('error while saving to database'));
 				res.send({
 					code: 20000,
@@ -728,8 +936,9 @@ async function monitImage(req, res, next) {
 					},
 				});
 			}
-		} else {
-			logger.warnLog(new Error('error while pushing monitor images: user or image not adequite'));
+		}
+		else {
+			logger.warnLog(new Error('error while enabling monitor images'));
 			res.send({
 				code: 20000,
 				data: {
@@ -737,8 +946,10 @@ async function monitImage(req, res, next) {
 				},
 			});
 		}
-	} catch (err) {
-		logger.warnLog('error while monitor images: ' + err);
+	}
+
+	catch (err) {
+		logger.warnLog('error while enabling monitor images' + err);
 		res.send({
 			code: 20000,
 			data: {
@@ -748,20 +959,31 @@ async function monitImage(req, res, next) {
 	}
 }
 
+/**
+ * 取消监测
+ * @param req
+ * @param res
+ * @param next
+ * @returns {bluebird<void>}
+ */
 async function cancelMonit(req, res, next) {
 	const { mail, token, imageID } = req.body;
+
 	const promises = Promise.all([
 		User.findOne({ mail: mail, token: token }),
 		Image.findById(imageID),
 		User.updateOne({ mail: mail }, { $pull: { monitorimages: imageID }, $inc: { monitorCount: -1 } }),
 		Image.updateOne({ _id: imageID }, { $set: { whetherMonitor: false } }),
 	]);
+
 	let flag = true;
 	promises
 		.then((result) => {
 			for (let i in result) {
-				if (result[i]) continue;
-				else flag = false;
+				if (result[i])
+					continue;
+				else
+					flag = false;
 			}
 			if (flag) {
 				res.send({
@@ -770,7 +992,8 @@ async function cancelMonit(req, res, next) {
 						cancel: true,
 					},
 				});
-			} else {
+			}
+			else {
 				logger.warnLog('document not found while cancelling image: ' + err);
 				res.send({
 					code: 20000,

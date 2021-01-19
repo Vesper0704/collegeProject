@@ -186,7 +186,7 @@
 import Tabs from '../../components/Tabs/Tabs'
 import TabPane from '../../components/Tabs/TabPane'
 import { FadeTransition } from "vue2-transitions";
-import { BasePagination } from '../../components/BasePagination';
+
 import Card from '../../components/Card'
 import tinyMice from '../components/tinymise'
 import { getImage } from '../../api/user'

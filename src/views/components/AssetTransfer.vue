@@ -17,13 +17,15 @@
                 >
                 <base-input alternative
                             class="mb-3"
-                            placeholder="请输入您的公钥"
+<!--                            输入公钥-->
+                            placeholder="Please input your owm public key"
                             addon-left-icon="ni ni-lock-circle-open"
                             ref="publicKey"
                             v-model="loginForm.publicKey"
                             name="publicKey">
                 </base-input>
-                <p class="mailHint" v-if="mailHint">请输入正确的公钥</p>
+                <p class="mailHint" v-if="mailHint">Please input your owm public key</p>
+
                 <base-input alternative
                             type="password"
                             placeholder="请输入您的私钥"
@@ -35,6 +37,7 @@
                             @keyup.enter.native="handleLogin">
                 </base-input>
                 <p class="mailHint" v-if="privateKeyHint">请输入正确的私钥</p>
+
                 <base-input alternative
                             type="password"
                             placeholder="请再次输入您的私钥"
@@ -45,26 +48,29 @@
                             @keyup.enter.native="handleLogin">
                 </base-input>
                 <p class="mailHint" v-if="repeatKeyHint">请保证两次输入的私钥相同！</p>
+
                 <base-input alternative
                             type="text"
                             placeholder="请输入对方公钥地址"
                             addon-left-icon="ni ni-notification-70"
                             v-model="loginForm.target">
-                
+
                 </base-input>
                 <p class="mailHint" v-if="targetAddressHint">请输入正确的公钥地址！</p>
+
                 <base-input alternative
                             type="text"
                             placeholder="验证码"
                             addon-left-icon="ni ni-notification-70"
                             v-model="loginForm.verification">
-                
+
                 </base-input>
                 <p class="mailHint" v-if="verificationHint">请输入正确的验证码！</p>
-                <base-identify 
+
+                <base-identify
                     @click.native="newCode()"
                     :identifyCode="identifyCode"></base-identify>
-                
+
                 <div class="text-center">
                     <base-button type="primary" class="my-4" @click.native.prevent="handleTransfer">确认</base-button>
                 </div>
@@ -139,7 +145,7 @@ export default {
       }
     },
     handleTransfer: function() {
-      
+
     }
   },
   watch: {

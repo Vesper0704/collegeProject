@@ -1,16 +1,18 @@
+
 <template>
-  <div class="container mt--300">
-    <card>
-      <template v-slot:header>
+  <div class="container mt--300" style="background-color: #bc2963">
+    <card style="background-color: #bc2963">
+      <template v-slot:header style="background-color: #bc2963">
         <div class="text-center">
           <h3 style="font-family: 'Comic Sans MS';font-size: x-large">Edit your picture</h3>
         </div>
         </template>
-      <div class="container" style="background-color:whitesmoke">
-        <div class="row justify-content-center">
+      <div class="container" style="background-color:#bc2963">
+        <div class="row justify-content-center" style="background-color: #bc2963">
           <img :src="url" alt="" class="image">
         </div>
-        <div class="row justify-content-center info" style="background-color: red">
+
+        <div class="row justify-content-center info" style="background-color: #bc2963">
           <image-detail v-for="(info,index) in imageInfo" :key="index"
                         :tableData="info" style="color: red;font-family: 'Comic Sans MS'"></image-detail>
         </div>
@@ -20,28 +22,37 @@
 
           </div>
         </div>
+
       </div>
+
+
       <template v-slot:footer>
         <div class="text-center">
-          <base-button type="primary" @click="canTransfer=true">转让</base-button>
-        <sapn>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp</sapn>
+          <base-button type="dark" @click="canTransfer=true">Transfer</base-button>
+        <sapn>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</sapn>
 <!--          <base-button type="secondary" @click="register">登记</base-button>-->
           <base-button type="danger" @click="monit">{{monitMessage}}</base-button>
-          <sapn>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp</sapn>
+          <sapn>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</sapn>
           <base-button type="info" @click="goback">back</base-button>
         </div>
       </template>
+
     </card>
 
     <modal :show.sync="canTransfer"
             gradient="default"
             modal-classes="modal-danger modal-dialog-centered">
-      <h6 slot="header" class="modal-title" id="modal-title-notification">请确认版权转让</h6>
+<!--      请确认版权转让-->
+      <h6 slot="header" class="modal-title" id="modal-title-notification">
+        <span><i class="ni ni-bell-55" >
+          <i style="font-family: 'Comic Sans MS'">
+            &nbsp;&nbsp;Please operate <b>VERY</b> carefully
+          </i>
+        </i></span>
+      </h6>
 
       <div class="py-3 text-center">
-          <!-- <i class="ni ni-bell-55 ni-3x"></i>
-          <h4 class="heading mt-4">请您注意</h4>
-          <p>这什么玩意儿</p> -->
+
           <card type="secondary" shadow
                 header-classes="bg-white pb-5"
                 body-classes="px-lg-5 py-lg-5"
@@ -56,50 +67,60 @@
                 >
                 <base-input alternative
                             class="mb-3"
-                            placeholder="请输入您的公钥"
-                            addon-left-icon="ni ni-lock-circle-open"
+                            placeholder="Please input your own public key"
+                            addon-left-icon="ni ni-circle-08"
                             ref="publicKey"
                             v-model="loginForm.publicKey"
                             name="publicKey">
                 </base-input>
-                <p class="mailHint" v-if="mailHint">请输入正确的公钥</p>
+<!--                请输入正确的公钥-->
+                <p class="mailHint" v-if="mailHint" style="font-family: 'Comic Sans MS'">Please input the CORRECT pub_K &nbsp;&nbsp;<i class="ni ni-active-40" ></i></p>
+
                 <base-input alternative
                             type="password"
-                            placeholder="请输入您的私钥"
+                            placeholder="Please input your own private key"
                             ref="privateKey"
                             name="privateKey"
-                            addon-left-icon="ni ni-lock-circle-open"
+                            addon-left-icon="ni ni-key-25"
                             :key="passwordType"
-                            v-model="loginForm.privateKey"
-                            @keyup.enter.native="handleLogin">
+                            v-model="loginForm.privateKey">
+<!--                            @keyup.enter.native="handleLogin">-->
                 </base-input>
-                <p class="mailHint" v-if="privateKeyHint">请输入正确的私钥</p>
+                <p class="mailHint" v-if="privateKeyHint" style="font-family: 'Comic Sans MS'">Please input the CORRECT pri_K&nbsp;&nbsp;<i class="ni ni-active-40" ></i></p>
+
                 <base-input alternative
                             type="password"
-                            placeholder="请再次输入您的私钥"
-                            addon-left-icon="ni ni-lock-circle-open"
+                            placeholder="Please re-enter your private key"
+                            addon-left-icon="ni ni-key-25"
                             ref="privateKeyReenter"
                             name="privateKeyReenter"
-                            v-model="loginForm.passwordReenter"
-                            @keyup.enter.native="handleLogin">
+                            v-model="loginForm.passwordReenter">
+<!--                            @keyup.enter.native="handleLogin">-->
                 </base-input>
-                <p class="mailHint" v-if="repeatKeyHint">请保证两次输入的私钥相同！</p>
+<!--                检查两次密钥是否一致-->
+                <p class="mailHint" v-if="repeatKeyHint" style="font-family: 'Comic Sans MS'">Please ensure the input private key are identical &nbsp;&nbsp;<i class="ni ni-active-40" ></i></p>
+
+
                 <base-input alternative
                             type="text"
-                            placeholder="请输入对方公钥地址"
-                            addon-left-icon="ni ni-notification-70"
+                            placeholder="Please input the public key of the target."
+                            addon-left-icon="ni ni-curved-next"
                             v-model="loginForm.target">
 
                 </base-input>
-                <p class="mailHint" v-if="targetAddressHint">请输入正确的公钥地址！</p>
+<!--               对方的 正确的公钥地址-->
+                <p class="mailHint" v-if="targetAddressHint" style="font-family: 'Comic Sans MS'">Please input the correct public key of the TARGET &nbsp;&nbsp;<i class="ni ni-active-40" ></i></p>
+
                 <base-input alternative
                             type="text"
-                            placeholder="验证码"
-                            addon-left-icon="ni ni-notification-70"
+                            placeholder="verification code"
+                            addon-left-icon="ni ni-image"
                             v-model="loginForm.verification">
 
                 </base-input>
-                <p class="mailHint" v-if="verificationHint">请输入正确的验证码！</p>
+<!--                请输入正确的验证码！-->
+                <p class="mailHint" v-if="verificationHint" style="font-family: 'Comic Sans MS'">
+                  Please input the correct verification code &nbsp;&nbsp;<i class="ni ni-active-40" ></i></p>
                 <base-identify
                     @click.native="newCode()"
                     :identifyCode="identifyCode"></base-identify>
@@ -108,21 +129,30 @@
           </card>
       </div>
 
+<!--      确认转账-->
       <template slot="footer">
-          <base-button type="white" @click="transfer">确认转账</base-button>
+          <base-button type="danger" @click="transfer"
+                       style="font-family: 'Comic Sans MS'">
+            Transfer Confirmed
+          </base-button>
+
+<!--        取消转账-->
           <base-button type="link"
                           text-color="white"
                           class="ml-auto"
-                          @click="canTransfer = false">
-              关闭
+                          @click="canTransfer = false"
+                       style="font-family: 'Comic Sans MS'">
+              Transfer Cancelled
           </base-button>
       </template>
     </modal>
 
+
+
     <modal :show.sync="whetherMonit"
             gradient="dark"
             modal-classes="modal-danger modal-dialog-centered">
-      <h6 slot="header" class="modal-title" id="modal-title-notification">Activate Monitoring</h6>
+<!--      <h6 slot="header" class="modal-title" id="modal-title-notification">Activate Monitoring</h6>-->
 
       <div class="py-3 text-center">
           <i class="ni ni-atom ni-5x"></i>
@@ -140,7 +170,6 @@
       </template>
     </modal>
   </div>
-
 </template>
 <script>
 import BaseIdentify from '../../components/BaseIdentify'
@@ -169,12 +198,12 @@ export default {
     },
     validatePublic: function(rule, value, callback) {
       if(!value) {
-        return callback(new Error('输入信息不能为空！'))
+        return callback(new Error('Can not be empty!'))
       }
     },
     validatePrivate: function(rule, value, callback) {
       if(!value) {
-        this.$message.error('输入信息不能为空')
+        this.$message.error('Can not be empty!');
       }
     },
     transfer() {
@@ -185,29 +214,32 @@ export default {
           transferTo: this.loginForm.target,
           imageID: this.id
         }
+        //将要提交的数据放入请求中发送
         transferAsset(reqData)
-        .then(res => {
+        .then(res => { //接受响应
           const data = res.data
           if(data.transfer) {
             this.$message({
               type: 'success',
-              message: '成功将作品转让'
+              message: 'Transferred successfully :)'
             })
             this.$store.dispatch('user/getInfo')
             .then(res => {
 
             })
             .catch(err => {
-              this.$message.error('不能成功获取用户信息' + err)
+              this.$message.error('can not retrieve user information! :(' + err)
             })
             this.canTransfer = true
-          } else {
-            this.$message.error('转让失败，请检查是否填错公私钥地址')
+          }
+
+          else {
+            this.$message.error('Transfer failure, please check the public/private keys :(')
           }
         })
 
       } else {
-        this.$message.error('请完善表格！')
+        this.$message.warning('Please fill in the form :)')
       }
     },
     goback() {
@@ -288,7 +320,9 @@ export default {
             .catch(err => {
               this.$message.error('不能成功获取用户信息' + err)
             })
-          } else {
+          }
+
+          else {
             this.$message.error('取消主动监测失败')
           }
         })
@@ -343,6 +377,7 @@ export default {
   watch: {
     loginForm: {
       deep: true,
+      //监控输入的数据
       handler(newValue, oldValue) {
         if(newValue.publicKey.length != 44) {
           this.mailHint = true
@@ -354,7 +389,7 @@ export default {
         } else {
           this.privateKeyHint = false
         }
-        if(newValue.target.length != 44) {
+        if(newValue.target.length < 40) {
           this.targetAddressHint = true
         } else {
           this.targetAddressHint = false
