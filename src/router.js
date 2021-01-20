@@ -17,6 +17,9 @@ import UploadImage from './views/components/uploadImage.vue';
 import EditImage from './views/components/EditImage.vue';
 import AssetTransfer from './views/components/AssetTransfer.vue';
 
+/*
+定义路由
+ */
 Vue.use(Router);
 
 export default new Router({
@@ -24,7 +27,7 @@ export default new Router({
 	mode: 'history',
 	routes: [
 		{
-			path: '/',
+			path: '/', //根路径
 			name: 'components',
 			components: {
 				header: AppHeader,
@@ -132,7 +135,7 @@ export default new Router({
 		if (to.hash) {
 			return { selector: to.hash };
 		} else {
-			return { x: 0, y: 0 };
+			return { x: 0, y: 0 };  //页面滚到顶部
 		}
 	},
 });

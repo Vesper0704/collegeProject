@@ -1,3 +1,4 @@
+<!--整个前端 入口-->
 <template>
 	<div id="app">
 		<router-view name="header"></router-view>

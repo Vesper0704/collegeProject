@@ -37,4 +37,6 @@ router.post('/transferAsset', controller.transferAsset);
 router.get('/getAllImages', controller.getAllImages);
 router.post('/checkImage', controller.checkImage);
 router.post('/monitAcceptor', controller.monitAcceptor);
+
+
 module.exports = router;

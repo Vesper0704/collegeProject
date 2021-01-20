@@ -23,10 +23,10 @@
                                   <span class="heading">{{ workCount }}</span>
                                   <span class="description">Number of works</span>
                               </div>
-                              <div>
-                                  <span class="heading">{{ registerCount }}</span>
-                                <span class="description">Number of <b>registered</b> works</span>
-                              </div>
+<!--                              <div>-->
+<!--                                  <span class="heading">{{ registerCount }}</span>-->
+<!--                                <span class="description">Number of <b>registered</b> works</span>-->
+<!--                              </div>-->
                               <div>
                                   <span class="heading">{{ monitorCount }}</span>
                                 <span class="description">Number of <b>monitoring</b> works</span>
