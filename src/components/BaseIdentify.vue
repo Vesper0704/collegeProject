@@ -1,3 +1,5 @@
+
+<!--绘制验证码-->
 <template>
 	<div class="s-canvas">
 		<canvas id="s-canvas" :width="contentWidth" :height="contentHeight"></canvas>
@@ -10,7 +12,7 @@ export default {
 		identifyCode: {
 			//默认注册码
 			type: String,
-			default: '1234',
+			default: '6666',
 		},
 		fontSizeMin: {
 			// 字体最小值
@@ -118,6 +120,7 @@ export default {
 			this.drawPic();
 		},
 	},
+  //创建时产生一个
 	mounted() {
 		this.drawPic();
 	},

@@ -50,7 +50,7 @@
                                             addon-left-icon="ni ni-email-83"
                                             v-model="registerForm.mail">
                                 </base-input>
-                                <p class="mailHint" v-if="mailHint">{{ hint }}</p>
+                                <p class="mailHint" v-if="mailHint" style="font-family: 'Comic Sans MS';color: #2bffc6">{{ hint }}</p>
                                 <base-input alternative
                                             type="password"
                                             placeholder="password"
@@ -63,7 +63,7 @@
                                             addon-left-icon="ni ni-lock-circle-open"
                                             v-model="registerForm.repeatPassword">
                                 </base-input>
-                                <p class="mailHint" v-if="passwordHint">The two passwords are different,
+                                <p class="mailHint" v-if="passwordHint" style="font-family: 'Comic Sans MS';color: #2bffc6">The two passwords are different,
                                              please re-enter</p>
                                 <base-input alternative
                                             type="text"
@@ -72,7 +72,7 @@
                                             v-model="registerForm.verification">
 
                                 </base-input>
-                                <p class="mailHint" v-if="verificationHint">Please input the verification code</p>
+                                <p class="mailHint" v-if="verificationHint" style="font-family: 'Comic Sans MS';color: #2bffc6">Please input correct the verification code</p>
                                 <base-identify
                                     @click.native="newCode()"
                                     :identifyCode="identifyCode"></base-identify>
@@ -203,9 +203,9 @@ export default {
         mailHint: function(newValue) {
             // if the format of email is not correct
             if(newValue === 1) {
-                this.hint = '请您输入正确的邮箱'
+                this.hint = 'Please input the email in the correct format'
             } else if(newValue === 2) {
-                this.hint = '该邮箱已经被注册，请您换个邮箱注册'
+                this.hint = 'Sorry but the email has been registered :('
             }
         }
     },

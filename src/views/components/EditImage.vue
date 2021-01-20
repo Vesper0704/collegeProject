@@ -379,12 +379,12 @@ export default {
       deep: true,
       //监控输入的数据
       handler(newValue, oldValue) {
-        if(newValue.publicKey.length != 44) {
+        if(newValue.publicKey.length < 40) {
           this.mailHint = true
         } else {
           this.mailHint = false
         }
-        if(newValue.privateKey.length != 44) {
+        if(newValue.privateKey.length < 40) {
           this.privateKeyHint = true
         } else {
           this.privateKeyHint = false

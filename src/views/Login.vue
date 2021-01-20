@@ -16,6 +16,7 @@
                              :model="loginForm"
                              :rules="loginRules"
                              class="login-form"
+
                              >
                                 <base-input alternative
                                             class="mb-3"
@@ -25,7 +26,7 @@
                                             v-model="loginForm.username"
                                             name="username">
                                 </base-input>
-                                <p class="mailHint" v-if="mailHint">{{ hint }}</p>
+                                <p class="mailHint" v-if="mailHint" style="font-family: 'Comic Sans MS';color: #2bffc6">{{ hint }}</p>
                                 <base-input alternative
                                             type="password"
                                             placeholder="password"
@@ -41,10 +42,13 @@
                                             v-model="loginForm.verification">
 
                                 </base-input>
-                                <p class="mailHint" v-if="verificationHint">{{veriHint}}</p>
+                                <p class="mailHint" v-if="verificationHint" style="font-family: 'Comic Sans MS';color: #2bffc6">{{veriHint}}</p>
+
+
                                 <base-identify
                                     @click.native="newCode()"
                                     :identifyCode="identifyCode"></base-identify>
+
                               <!-- 记住当前用户-->
                                 <base-checkbox style="color:whitesmoke">
                                     Remember me
@@ -180,6 +184,10 @@ export default {
             }
         },
         handleLogin() {
+          if(this.verificationHint)
+          {
+            this.$message.error("Please input the correct verification code!")
+          }
             for(let item in this.loginForm) {
                 if(this.loginForm[item] === '') {
                     this.canRegister = true

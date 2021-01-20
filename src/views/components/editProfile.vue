@@ -117,7 +117,7 @@
       <template v-slot:footer style="background-color: #2dce89">
         <div class="row justify-content-center">
            <base-button type="danger" @click="save()">save</base-button>
-          <span></span>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
            <base-button type="warning" @click="goback()">return</base-button>
         </div>
       </template>
@@ -125,11 +125,11 @@
     <modal :show.sync="saveStatus">
 <!--      <i class="ni ni-air-baloon"></i>-->
                 <h6 slot="header" class="modal-title" id="modal-title-default"><i class="ni ni-air-baloon"></i>Note</h6>
-      <i class="ni ni-app"></i>
-               <div style="color: red;font-family: 'Comic Sans MS'">Save successfully :)</div>
+
+               <div style="color:black;font-family: 'Comic Sans MS'"><i class="ni ni-app"></i>&nbsp;&nbsp;Save successfully :)</div>
 
                 <template slot="footer">
-                  <base-button type="danger" @click="goback">Confirm</base-button>
+                  <base-button type="success" @click="goback">Confirm</base-button>
 <!--                  <base-button type="dark" class="ml-auto" @click="saveStatus=false">关闭</base-button>-->
                 </template>
             </modal>
