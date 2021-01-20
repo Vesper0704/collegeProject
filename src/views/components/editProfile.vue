@@ -98,15 +98,15 @@
 <!--            </b-list-group-item>-->
            <b-list-group-item style="background-color: antiquewhite">
               <div class="row">
-                <div class="col-md-3">公钥</div>
+                <div class="col-md-3"><b>public key</b></div>
                 <div class="col-md-6">{{ info.publicKey }}</div>
               </div>
             </b-list-group-item>
 
            <b-list-group-item style="background-color: antiquewhite">
               <div class="row">
-                <div class="col-md-3">私钥</div>
-                <div class="col-md-6">{{ privateKey }}</div>
+                <div class="col-md-4"><b>private key</b></div>
+                <div class="col-md-5">{{ privateKey }}</div>
                 <div class="col-md-3"> <base-button type="dark" @click="checkPrivKey()">View</base-button></div>
               </div>
             </b-list-group-item>
@@ -226,7 +226,8 @@ export default {
       .then(result => {
         if(result.update) {
           this.saveStatus = true
-          return this.$store.dispatch('user/getInfo')
+           return this.$store.dispatch('user/getInfo')
+
         }
       })
       .then(data => {
