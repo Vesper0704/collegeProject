@@ -12,9 +12,11 @@
 				</a>
 <!--				<a href="/landing" class="nav-link" role="button"><li class="nav-item">Copyright Market</li></a>-->
 				<a href="/profile" class="nav-link" role="button"><li class="nav-item">Copyright Register</li></a>
-				<a href="/profile" class="nav-link" role="button"><li class="nav-item">Copyright Monitor</li></a>
+        <a href="/profile" class="nav-link" role="button"><li class="nav-item">Copyright Monitor</li></a>
 			</ul>
+
 			<ul class="navbar-nav align-items-lg-center ml-lg-auto">
+<!--        没有登陆时显示sign up/in-->
 				<li class="nav-item d-none d-lg-block ml-lg-4" v-if="!loggedin">
 					<a target="_blank" role="button" v-if="!loggedin" class="btn btn-neutral btn-icon" @click="toLogin()">
 						<span class="btn-inner--icon">
@@ -24,6 +26,7 @@
 						<span class="nav-link-inner--text">Sign in/Sign up</span>
 					</a>
 				</li>
+<!--        已经登陆显示用户名-->
 				<li class="nav-item d-none d-lg-block ml-lg-4" v-if="loggedin">
 					<!-- <button class="btn btn-success" type="button" @click="toProfile()">
                         {{ username }}

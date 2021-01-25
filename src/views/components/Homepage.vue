@@ -1,7 +1,7 @@
 <!--主页上的排版-->
 <template>
     <section class="section-hero section-shaped my-0">
-        <div class="shape shape-style-3 shape-dark">
+        <div class="shape shape-style-1 shape-dark">
             <span class="span-150"></span>
             <span class="span-50"></span>
             <span class="span-50"></span>

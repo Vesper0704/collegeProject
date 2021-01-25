@@ -3,6 +3,8 @@ var router = express.Router();
 const controller = require('../controllers/controller');
 const multer = require('multer');
 const path = require('path');
+
+//定义存储文件的地方和格式
 const storage = multer.diskStorage({
 	destination: function(req, file, cb) {
 		cb(null, path.join(__dirname, '../public/images'));
@@ -12,6 +14,7 @@ const storage = multer.diskStorage({
 	},
 });
 const upload = multer({ storage: storage });
+
 /* GET users listing. */
 router.get('/', function(req, res, next) {
 	res.send('respond with a resource');

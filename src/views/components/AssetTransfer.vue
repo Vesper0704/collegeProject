@@ -15,9 +15,9 @@
                 :rules="loginRules"
                 class="login-form"
                 >
+                <!--                            输入公钥-->
                 <base-input alternative
                             class="mb-3"
-<!--                            输入公钥-->
                             placeholder="Please input your owm public key"
                             addon-left-icon="ni ni-lock-circle-open"
                             ref="publicKey"

@@ -204,6 +204,7 @@
 - 第一次运行`ipfs init`
 - 否则`ipfs daemon`
 - /ip4/127.0.0.1/tcp/5001 默认在5001端口监听
+-  查看 http://localhost:5001/webui
 - 允许跨域请求
   ipfs config --json API.HTTPHeaders.Access-Control-Allow-Origin '["http://localhost:3000", "http://127.0.0.1:5001", "https://webui.ipfs.io"]'
   ipfs config --json API.HTTPHeaders.Access-Control-Allow-Methods '["PUT", "POST"]'
