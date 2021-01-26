@@ -290,7 +290,8 @@ async function register(req, res, next) {
 		mail: mail,
 		password: password,
 		token: token,
-		avatar: `${config.serverUrl}/images/user.svg`, //默认头像
+	//	avatar: `${config.serverUrl}/images/user.svg`, //默认头像
+		avatar: `${config.serverUrl}/avatar/avatar.svg`, //默认头像
 		nickname: username,
 		workCount: 0,
 		registerCount: 0,

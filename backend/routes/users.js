@@ -15,11 +15,14 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage: storage });
 
-/* GET users listing. */
+//根路径
 router.get('/', function(req, res, next) {
-	res.send('respond with a resource');
+	res.render('index',{title:'You have accessed User section'});
 });
+
+
 router.post('/login', controller.login);
+
 router.post('/logout', function(req, res, next) {
 	res.send({
 		code: 20000,
