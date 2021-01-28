@@ -3,16 +3,26 @@ var router = express.Router();
 const controller = require('../controllers/controller');
 const multer = require('multer');
 const path = require('path');
+const mkdirp =require('mkdirp')
+const sd = require('silly-datetime')
 
-//定义存储文件的地方和格式
-const storage = multer.diskStorage({
-	destination: function(req, file, cb) {
-		cb(null, path.join(__dirname, '../public/images'));
-	},
-	filename: function(req, file, cb) {
-		cb(null, `${file.fieldname}-${Date.now()}-${file.originalname}`);
-	},
-});
+		//转换成年月日的格式  按照这样的格式生成目录存储
+		// let day = sd.format(new Date(),'YYYYMMDD')
+		// let dir = path.join('public/images',day)
+		//
+        // await mkdirp(dir)
+		//
+		// cb(null, dir);
+		const storage = multer.diskStorage({
+			//定义存储文件的地方和格式
+			destination: function(req, file, cb) {
+				cb(null, path.join(__dirname, '../public/images'));
+			},
+			filename: function(req, file, cb) {
+				cb(null, `${file.fieldname}-${Date.now()}-${file.originalname}`);
+			},
+		});
+
 const upload = multer({ storage: storage });
 
 //根路径

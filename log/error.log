@@ -103,3 +103,33 @@
   message: 'error in multiUpload[object Object]',
   timestamp: '2021-01-26T11:23:30.097Z'
 }
+{
+  level: 'warn',
+  message: 'error in multiUpload[object Object]',
+  timestamp: '2021-01-28T15:51:50.768Z'
+}
+{
+  level: 'warn',
+  message: 'error in multiUpload[object Object]',
+  timestamp: '2021-01-28T16:02:11.934Z'
+}
+{
+  level: 'warn',
+  message: 'error in multiUpload[object Object]',
+  timestamp: '2021-01-28T16:02:48.313Z'
+}
+{
+  level: 'warn',
+  message: 'error in multiUpload[object Object]',
+  timestamp: '2021-01-28T16:05:37.505Z'
+}
+{
+  level: 'warn',
+  message: 'error in multiUpload[object Object]',
+  timestamp: '2021-01-28T16:05:44.477Z'
+}
+{
+  level: 'warn',
+  message: 'error in multiUpload[object Object]',
+  timestamp: '2021-01-28T16:08:16.552Z'
+}
