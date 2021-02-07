@@ -4,6 +4,9 @@ const router =express.Router()
 const User = require('../models/userModel')
 const Image = require('../models/imageModel')
 
+router.get('/',(req,res)=>{
+    res.render('admin',{title:'Administration'})
+})
 router.get('/userList',async(req,res)=>{
     let user = await User.find({})
     let count = await User.find({}).count()
