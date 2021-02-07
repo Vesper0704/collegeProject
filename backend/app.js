@@ -9,7 +9,7 @@ const cors = require('cors');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-
+var adminRouter=require('./routes/admin')
 const config = require('./config/config').config;
 
 //实例化express应用 构建服务器
@@ -72,6 +72,8 @@ app.use('/', indexRouter);  //Mount the router as middleware at root path
 
 //具体的一些业务逻辑都在userRouter里面
 app.use('/users', usersRouter);
+
+app.use('/admin', adminRouter)
 
 // 链式 以上都没有捕获到  创建404交给next(): error handler
 app.use(function(req, res, next) {

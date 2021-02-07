@@ -297,9 +297,9 @@ async function register(req, res, next) {
 		registerCount: 0,
 		monitorCount: 0,
 		age: 20,
-		residence: 'undefined',
-		jobTitle: 'undefined',
-		workplace: 'undefined',
+		residence: 'residence',
+		jobTitle: 'occupation',
+		workplace: 'workplace',
 		self_introduction: 'Say something here to get to know others quickly!',
 		//新用户初始化
 		allimages: [],

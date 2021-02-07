@@ -16,7 +16,7 @@ import Article from './views/components/Article.vue';
 import UploadImage from './views/components/uploadImage.vue';
 import EditImage from './views/components/EditImage.vue';
 import AssetTransfer from './views/components/AssetTransfer.vue';
-
+import Admin from './views/Admin.vue'
 /*
 定义路由
  */
@@ -52,6 +52,14 @@ export default new Router({
 				default: Login,
 				footer: AppFooter,
 			},
+		},
+		{
+			path:'/admin',
+			name:Admin,
+			components:{
+				Admin
+			}
+
 		},
 		{
 			path: '/register',

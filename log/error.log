@@ -133,3 +133,43 @@
   message: 'error in multiUpload[object Object]',
   timestamp: '2021-01-28T16:08:16.552Z'
 }
+{
+  level: 'warn',
+  message: 'error in multiUpload[object Object]',
+  timestamp: '2021-02-04T12:14:13.637Z'
+}
+{
+  level: 'warn',
+  message: 'error in multiUpload[object Object]',
+  timestamp: '2021-02-04T12:14:35.761Z'
+}
+{
+  level: 'warn',
+  message: 'error in multiUpload[object Object]',
+  timestamp: '2021-02-04T12:22:56.198Z'
+}
+{
+  level: 'warn',
+  message: 'error in multiUploadError: connect ECONNREFUSED 127.0.0.1:5001',
+  timestamp: '2021-02-07T02:40:59.948Z'
+}
+{
+  level: 'warn',
+  message: 'error in multiUpload[object Object]',
+  timestamp: '2021-02-07T02:40:59.951Z'
+}
+{
+  level: 'warn',
+  message: 'error in multiUpload[object Object]',
+  timestamp: '2021-02-07T02:41:39.314Z'
+}
+{
+  level: 'warn',
+  message: 'error in multiUpload[object Object]',
+  timestamp: '2021-02-07T02:44:13.393Z'
+}
+{
+  level: 'warn',
+  message: 'error in multiUpload[object Object]',
+  timestamp: '2021-02-07T02:44:26.334Z'
+}

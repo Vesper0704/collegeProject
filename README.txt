@@ -40,3 +40,10 @@ cd /Users/apple/Desktop/毕设
 # 运行前端
 - 开发环境构建`npm run serve`
 - 生产环境构建 `npm run build`
+
+
+//查看上传的照片
+http://127.0.0.1:3000/images/{}
+
+//查看交易
+http://127.0.0.1:9984/api/v1/transactions/{transaction_id}

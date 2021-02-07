@@ -124,7 +124,7 @@ export default {
             } else {
                 callback()
             }
-        }
+               }
         return {
             code: this.refreshCode(4),
             loginForm: {
