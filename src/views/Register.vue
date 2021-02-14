@@ -75,17 +75,21 @@
                                 <p class="mailHint" v-if="verificationHint" style="font-family: 'Comic Sans MS';color: #2bffc6">Please input correct the verification code</p>
                                 <base-identify
                                     @click.native="newCode()"
-                                    :identifyCode="identifyCode"></base-identify>
+                                    :identifyCode="identifyCode">
+                                </base-identify>
                                 <!-- <div class="text-muted font-italic">
                                     <small>password strength:
                                         <span class="text-success font-weight-700">strong</span>
                                     </small>
                                 </div> -->
-                                <base-checkbox style="color: whitesmoke">
+                                <base-checkbox style="color: whitesmoke" class="mb-3" v-model="checked">
                                     <span>I agree to the
-                                       <b> privacy policy. </b>
+                                      <a href="http://www.ccopyright.com.cn/" target="_blank" style="color: whitesmoke"><b> privacy policy. </b></a>
                                     </span>
                                 </base-checkbox>
+
+
+
                               <br/>
                                 <div class="text-center">
                                     <base-button type="default" class="my-2"
@@ -219,6 +223,7 @@ export default {
                 repeatPassword: '',
                 verification: ''
             },
+            checked:false,
             canRegister: false,
             usedName: false,
             mailHint: 0,
@@ -248,8 +253,12 @@ export default {
                     this.canRegister = true
                 }
             }
-            if(this.canRegister === false && this.usedName === false && this.passwordHint === false && this.verificationHint === false) {
-                this.$store.dispatch('user/register', this.registerForm).then(data => {
+            if(!this.checked){
+              this.$message.warning('Please select Agree to the privacy policy')
+            }
+            if(this.checked&&this.canRegister === false && this.usedName === false && this.passwordHint === false && this.verificationHint === false) {
+                this.$message.success('Register Success :)')
+              this.$store.dispatch('user/register', this.registerForm).then(data => {
                 console.log(data)
                 this.$store.dispatch('user/getInfo')
                     .then(info => {

@@ -12,7 +12,8 @@
 				</a>
 <!--				<a href="/landing" class="nav-link" role="button"><li class="nav-item">Copyright Market</li></a>-->
 				<a href="/profile" class="nav-link" role="button"><li class="nav-item">Copyright Register</li></a>
-        <a href="/profile" class="nav-link" role="button"><li class="nav-item">Copyright Monitor</li></a>
+        <a href="http://localhost:5001/webui"  target = "_blank" class="nav-link" role="button"><li class="nav-item">
+          IPFS Station</li></a>
 			</ul>
 
 			<ul class="navbar-nav align-items-lg-center ml-lg-auto">

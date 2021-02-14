@@ -4,7 +4,7 @@
     <card shadow class="card-profile mt--300" style="background-color: antiquewhite">
       <template v-slot:header >
         <div class="row justify-content-center" >
-          <h3 style="font-family: 'Comic Sans MS'">个人信息</h3>
+          <h3 style="font-family: 'Comic Sans MS'">Personal Info</h3>
         </div>
       </template>
       <div class="row justify-content-md-center" >
@@ -39,7 +39,7 @@
                 <div class="col-md-3">Nickname</div>
                 <div class="col-md-6" v-if="!changeName">{{ info.nickname }}</div>
                 <input type="text" class="form-control col-md-6" v-bind:placeholder="info.nickname" v-if="changeName" v-model="info.nickname">
-                <div class="col-md-3"> <base-button type="danger" @click="changeNickname()">change</base-button></div>
+                <div class="col-md-3"> <base-button type="danger" @click="changeNickname()">edit</base-button></div>
               </div>
             </b-list-group-item>
 
@@ -59,7 +59,7 @@
                 <div class="col-md-3">Age</div>
                 <div class="col-md-6" v-if="!changeAge">{{ info.age }}</div>
                 <input type="text" class="form-control col-md-6" v-bind:placeholder="info.age" v-if="changeAge" v-model="info.age">
-                <div class="col-md-3"> <base-button type="danger" @click="changeUserAge()">change</base-button></div>
+                <div class="col-md-3"> <base-button type="danger" @click="changeUserAge()">edit</base-button></div>
               </div>
             </b-list-group-item>
 
@@ -68,7 +68,7 @@
                 <div class="col-md-3">Residence</div>
                 <div class="col-md-6" v-if="!changeResidence">{{ info.residence }}</div>
                 <input type="text" class="form-control col-md-6" v-bind:placeholder="info.residence" v-if="changeResidence" v-model="info.residence">
-                <div class="col-md-3"> <base-button type="danger" @click="changeUserResidence()">change</base-button></div>
+                <div class="col-md-3"> <base-button type="danger" @click="changeUserResidence()">edit</base-button></div>
               </div>
             </b-list-group-item>
 
@@ -77,7 +77,7 @@
                 <div class="col-md-3">Occupation</div>
                 <div class="col-md-6" v-if="!changeJob">{{ info.jobTitle }}</div>
                 <input type="text" class="form-control col-md-6" v-bind:placeholder="info.jobTitle" v-if="changeJob" v-model="info.jobTitle">
-                <div class="col-md-3"> <base-button type="danger" @click="changeUserJob()">change</base-button></div>
+                <div class="col-md-3"> <base-button type="danger" @click="changeUserJob()">edit</base-button></div>
               </div>
             </b-list-group-item>
 
@@ -86,7 +86,7 @@
                 <div class="col-md-3">Introduction</div>
                 <div class="col-md-6" v-if="!changeIntro">{{ info.self_introduction }}</div>
                 <input type="text" class="form-control col-md-6" v-bind:placeholder="info.self_introduction" v-if="changeIntro" v-model="info.self_introduction">
-                <div class="col-md-3"> <base-button type="danger" @click="changeUserIntro()">change</base-button></div>
+                <div class="col-md-3"> <base-button type="danger" @click="changeUserIntro()">edit</base-button></div>
               </div>
             </b-list-group-item>
 
@@ -107,7 +107,7 @@
               <div class="row">
                 <div class="col-md-4"><b>private key</b></div>
                 <div class="col-md-5">{{ privateKey }}</div>
-                <div class="col-md-3"> <base-button type="dark" @click="checkPrivKey()">View</base-button></div>
+                <div class="col-md-3"> <base-button type="dark" v-model="view" @click="checkPrivKey()">View</base-button></div>
               </div>
             </b-list-group-item>
           </b-list-group>
@@ -179,7 +179,8 @@ export default {
       changeIntro: false,
       privateKey: '',
       saveStatus: false,
-      saveFailure: false
+      saveFailure: false,
+      view:false
     }
   },
   created() {
@@ -211,7 +212,13 @@ export default {
       this.changeIntro = !this.changeIntro
     },
     checkPrivKey() {
-      this.privateKey = this.info.privateKey
+      this.view=!this.view
+      if(this.view)
+       this.privateKey = this.info.privateKey
+
+      else{
+        this.privateKey='Click view to check'
+      }
     },
     save: function() {
       const data = {
