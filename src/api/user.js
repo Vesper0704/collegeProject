@@ -71,6 +71,14 @@ export function transferImage(data) {
 	});
 }
 
+export function getAccount(data) {
+	return request({
+		url: 'users/getAccount',
+		method: 'post',
+		data,
+	});
+}
+
 export function monitImage(data) {
 	return request({
 		url: 'users/monitImage',
@@ -79,7 +87,7 @@ export function monitImage(data) {
 	});
 }
 
-export function calcelMonit(data) {
+export function cancelMonit(data) {
 	return request({
 		url: 'users/cancelMonit',
 		method: 'post',

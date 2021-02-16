@@ -1155,6 +1155,50 @@ async function monitAcceptor(req, res, next) {
 		});
 	}
 }
+
+async function getAccount(req,res,next){
+	let email = req.body.email;
+	let result = await User.findOne({username:email})
+
+	if(result){
+		res.send({
+			status:true,
+			data:'user found :)',
+			result:result
+		})
+	}
+	else{
+		res.send({
+			status:false,
+			data:'user not found :('
+		})
+	}
+}
+
+
+async function changePassword(req,res,next){
+	let {username,NewPassword} = req.body
+    console.log(username+' '+NewPassword)
+	let result = await User.updateOne({username:username},{password:NewPassword},function(err,res){
+		if(!err)
+		{
+			console.log(res)
+		}
+	})
+
+	if(result){
+		res.send({
+			status:true,
+			data:result
+		})
+	}else{
+		res.send({
+			status:false,
+		})
+	}
+}
+
+
 module.exports = {
 	login: login,
 	getInfo: getInfo,
@@ -1171,4 +1215,6 @@ module.exports = {
 	getAllImages: getAllImages,
 	checkImage: checkImage,
 	monitAcceptor: monitAcceptor,
+	getAccount:getAccount,
+	changePassword:changePassword
 };

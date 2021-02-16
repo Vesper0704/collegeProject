@@ -17,6 +17,8 @@ import UploadImage from './views/components/uploadImage.vue';
 import EditImage from './views/components/EditImage.vue';
 import AssetTransfer from './views/components/AssetTransfer.vue';
 import Admin from './views/Admin.vue'
+import changePassword from "@/views/changePassword";
+import checkAcc from "@/views/checkAcc";
 /*
 定义路由
  */
@@ -67,6 +69,24 @@ export default new Router({
 			components: {
 				header: AppHeader,
 				default: Register,
+				footer: AppFooter,
+			},
+		},
+		{
+			path: '/checkAcc',
+			name: 'checkAcc',
+			components: {
+				header: AppHeader,
+				default: checkAcc,
+				footer: AppFooter,
+			},
+		},
+		{
+			path: '/changePassword',
+			name: 'changePassword',
+			components: {
+				header: AppHeader,
+				default:changePassword,
 				footer: AppFooter,
 			},
 		},

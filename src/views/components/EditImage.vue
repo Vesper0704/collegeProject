@@ -174,7 +174,7 @@
 <script>
 import BaseIdentify from '../../components/BaseIdentify'
 import Card from '../../components/Card'
-import { getImage, transferImage, monitImage, calcelMonit, transferAsset } from '../../api/user'
+import { getImage, transferImage, monitImage, cancelMonit, transferAsset } from '../../api/user'
 import ImageDetail from '../components/imageDetail'
 import Modal from '../../components/Modal'
 
@@ -296,7 +296,7 @@ export default {
         })
 
       } else {
-        calcelMonit(reqData)
+        cancelMonit(reqData)
         .then(res => {
           const data = res.data
           if(data.cancel) {

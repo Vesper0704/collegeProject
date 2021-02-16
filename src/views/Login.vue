@@ -61,17 +61,19 @@
                     </card>
                     <div class="row mt-3">
                       <!--忘记密码-->
-<!--                        <div class="col-6">-->
-<!--                            <a href="#" class="text-light">-->
-<!--                                <small>Forget your password？</small>-->
-<!--                            </a>-->
-<!--                        </div>-->
+
                         <div class="col-6 text-md-center" style="font-size:large">
                           <!--创建新用户-->
                             <a href="#" class="text-light" @click="createAccount()">
                                 <small>Create a New Account</small>
                             </a>
                         </div>
+
+                      <div class="col-6 text-md-center" style="font-size:large">
+                        <a href="#" class="text-light" @click="changePassword()">
+                          <small>Forget your password？</small>
+                        </a>
+                      </div>
                     </div>
                 </div>
             </div>
@@ -228,6 +230,9 @@ export default {
         createAccount() {
             this.$router.push({path: '/register'})
         },
+      changePassword(){
+        this.$router.push({path: '/checkAcc'})
+      },
         newCode() {
             this.code = this.refreshCode(4)
         },
