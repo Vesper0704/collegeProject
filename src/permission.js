@@ -1,7 +1,7 @@
 import router from './router';
 import { getToken } from './utils/auth';
 
-const whiteList = ['/login', '/', '/register','/changePassword','/checkAcc'];
+const whiteList = ['/login', '/', '/register','/changePassword','/checkAcc','/search','/ShowPic'];
 
 router.beforeEach(async (to, from, next) => {
 
@@ -18,7 +18,10 @@ router.beforeEach(async (to, from, next) => {
 		}
 		else {
 			// other pages that do not have permission to access are redirected to the login page.
+			//this.$message.warning('Please log in first')
+
 			next(`/login?redirect=${to.path}`);
+
 		}
 	}
 });

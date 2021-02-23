@@ -56,7 +56,7 @@
           </card>
 
           <div class="text-center mt-10 justify-content-center" >
-            <tabs >
+            <tabs>
               <tab-pane title="Portfolio" style="font-family: 'Comic Sans MS'; font-size: 20px">
                 <transition name="fade">
                   <div class="row">

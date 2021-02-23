@@ -2423,6 +2423,11 @@
   "resolved" "https://registry.npmjs.org/core-js/-/core-js-2.6.10.tgz"
   "version" "2.6.10"
 
+"core-js@^3.4.3":
+  "integrity" "sha512-PyFBJaLq93FlyYdsndE5VaueA9K5cNB7CGzeCj191YYLhkQM0gdZR2SKihM70oF0wdqKSKClv/tEBOpoRmdOVQ=="
+  "resolved" "https://registry.npmjs.org/core-js/-/core-js-3.9.0.tgz"
+  "version" "3.9.0"
+
 "core-util-is@~1.0.0", "core-util-is@1.0.2":
   "integrity" "sha1-tf1UIgqivFq1eqtxQMlAdUUDwac="
   "resolved" "https://registry.npmjs.org/core-util-is/-/core-util-is-1.0.2.tgz"
@@ -8206,6 +8211,11 @@
   "resolved" "https://registry.npmjs.org/throttle-debounce/-/throttle-debounce-1.1.0.tgz"
   "version" "1.1.0"
 
+"throttle-debounce@^2.0.1":
+  "integrity" "sha1-/TGGXmZQIHHkEYF+JBRls+nDcuI="
+  "resolved" "https://registry.npm.taobao.org/throttle-debounce/download/throttle-debounce-2.3.0.tgz?cache=0&sync_timestamp=1604315662384&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fthrottle-debounce%2Fdownload%2Fthrottle-debounce-2.3.0.tgz"
+  "version" "2.3.0"
+
 "through@^2.3.6":
   "integrity" "sha1-DdTJ/6q8NXlgsbckEV1+Doai4fU="
   "resolved" "https://registry.npmjs.org/through/-/through-2.3.8.tgz"
@@ -8549,6 +8559,14 @@
   "resolved" "https://registry.npmjs.org/uuid/-/uuid-3.3.3.tgz"
   "version" "3.3.3"
 
+"v-viewer@^1.5.1":
+  "integrity" "sha1-lIBNg4FMylZuaRM5/h5keTSG8gA="
+  "resolved" "https://registry.npm.taobao.org/v-viewer/download/v-viewer-1.5.1.tgz"
+  "version" "1.5.1"
+  dependencies:
+    "throttle-debounce" "^2.0.1"
+    "viewerjs" "^1.5.0"
+
 "validate-npm-package-license@^3.0.1":
   "integrity" "sha512-DpKm2Ui/xN7/HQKCtpZxoRWBhZ9Z0kqtygG8XCgNQ8ZlDnxuQmWhj566j8fN4Cu3/JmbhsDo7fcAJq4s9h27Ew=="
   "resolved" "https://registry.npmjs.org/validate-npm-package-license/-/validate-npm-package-license-3.0.4.tgz"
@@ -8575,6 +8593,11 @@
     "assert-plus" "^1.0.0"
     "core-util-is" "1.0.2"
     "extsprintf" "^1.2.0"
+
+"viewerjs@^1.5.0":
+  "integrity" "sha1-bfr1REDDsvdpG4Vma6bSdwjtlZI="
+  "resolved" "https://registry.npm.taobao.org/viewerjs/download/viewerjs-1.9.0.tgz"
+  "version" "1.9.0"
 
 "vm-browserify@^1.0.1":
   "integrity" "sha512-iq+S7vZJE60yejDYM0ek6zg308+UZsdtPExWP9VZoCFCz1zkJoXFnAX7aZfd/ZwrkidzdUZL0C/ryW+JwAiIGw=="
@@ -8667,10 +8690,24 @@
   "resolved" "https://registry.npmjs.org/vue/-/vue-2.6.10.tgz"
   "version" "2.6.10"
 
+"vue2-animate@^2.1.0":
+  "integrity" "sha512-tIFHLxLYXwti0E3rJ7OeIUxTl+uVC8t9SYlD4aQ+gfgcheSu9yDbXklBNRIFxBmfNWDVpKQLMvGLxRrrCn3alw=="
+  "resolved" "https://registry.npmjs.org/vue2-animate/-/vue2-animate-2.1.4.tgz"
+  "version" "2.1.4"
+
 "vue2-transitions@^0.2.3":
   "integrity" "sha512-Ou5x74AOQbM8JjZV8pIssFFqavvj53QzrEEUr5QnElUYb1ZizPwaUJo0ZqmLPqjwPae7ON4SG8U2cSTI4tHKLg=="
   "resolved" "https://registry.npmjs.org/vue2-transitions/-/vue2-transitions-0.2.3.tgz"
   "version" "0.2.3"
+
+"vue2-viewer@^1.0.3":
+  "integrity" "sha512-snsaV2/UCyDZnyYOGOyBjLzNSIZEpXTey5WF8V7YkCBz2rwVYDr/Gvxi6HYs1w/+R+OnevUCRwchtQMI/XcU4w=="
+  "resolved" "https://registry.npmjs.org/vue2-viewer/-/vue2-viewer-1.0.3.tgz"
+  "version" "1.0.3"
+  dependencies:
+    "core-js" "^3.4.3"
+    "vue" "^2.6.10"
+    "vue2-animate" "^2.1.0"
 
 "vuex@^3.1.1":
   "integrity" "sha512-ER5moSbLZuNSMBFnEBVGhQ1uCBNJslH9W/Dw2W7GZN23UQA69uapP5GTT9Vm8Trc0PzBSVt6LzF3hGjmv41xcg=="

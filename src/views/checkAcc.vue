@@ -26,29 +26,15 @@
                 <large>Step 1 - Check your Account</large>
 
               </div>
-<!--                <div class="btn-wrapper text-center">-->
-<!--                    <base-button type="neutral">-->
-<!--                        <img slot="icon" src="img/icons/common/github.svg">-->
-<!--                        Github-->
-<!--                    </base-button>-->
 
-<!--                    <base-button type="neutral">-->
-<!--                        <img slot="icon" src="img/icons/common/google.svg">-->
-<!--                        Google-->
-<!--                    </base-button>-->
-<!--                </div>-->
+
             </template>
             <template>
 
               <form role="form"
                     ref="checkForm"
                     :model="checkForm">
-<!--                <base-input alternative-->
-<!--                            class="mb-3"-->
-<!--                            placeholder="username"-->
-<!--                            addon-left-icon="ni ni-circle-08"-->
-<!--                            v-model="registerForm.username">-->
-<!--                </base-input>-->
+
                 <base-input alternative
                             class="mb-3"
                             placeholder="E-mail address"
@@ -58,46 +44,6 @@
                 <p class="mailHint" v-if="mailHint" style="font-family: 'Comic Sans MS';color: #2bffc6">
                   {{ hint }}
                 </p>
-<!--                <base-input alternative-->
-<!--                            type="password"-->
-<!--                            placeholder="password"-->
-<!--                            addon-left-icon="ni ni-lock-circle-open"-->
-<!--                            v-model="registerForm.password">-->
-<!--                </base-input>-->
-<!--                <base-input alternative-->
-<!--                            type="password"-->
-<!--                            placeholder="Enter password again"-->
-<!--                            addon-left-icon="ni ni-lock-circle-open"-->
-<!--                            v-model="registerForm.repeatPassword">-->
-<!--                </base-input>-->
-<!--                <p class="mailHint" v-if="passwordHint" style="font-family: 'Comic Sans MS';color: #2bffc6">The two passwords are different,-->
-<!--                  please re-enter</p>-->
-
-
-<!--                <base-input alternative-->
-<!--                            type="text"-->
-<!--                            placeholder="verify-code"-->
-<!--                            addon-left-icon="ni ni-tag"-->
-<!--                            v-model="registerForm.verification">-->
-
-<!--                </base-input>-->
-<!--                <p class="mailHint" v-if="verificationHint" style="font-family: 'Comic Sans MS';color: #2bffc6">Please input correct the verification code</p>-->
-<!--                <base-identify-->
-<!--                    @click.native="newCode()"-->
-<!--                    :identifyCode="identifyCode">-->
-<!--                </base-identify>-->
-                <!-- <div class="text-muted font-italic">
-                    <small>password strength:
-                        <span class="text-success font-weight-700">strong</span>
-                    </small>
-                </div> -->
-<!--                <base-checkbox style="color: whitesmoke" class="mb-3" v-model="checked">-->
-<!--                                    <span>I agree to the-->
-<!--                                      <a href="http://www.ccopyright.com.cn/" target="_blank" style="color: whitesmoke"><b> privacy policy. </b></a>-->
-<!--                                    </span>-->
-<!--                </base-checkbox>-->
-
-
 
                 <div class="text-center">
                   <base-button type="default" class="my-2"
@@ -121,60 +67,7 @@
         </div>
       </div>
     </div>
-    <!--        <div class="modal fade" id="modal-notification" tabindex="-1" role="dialog" aria-labelledby="modal-notification" aria-hidden="true">-->
-    <!--            <div class="modal-dialog modal-danger modal-dialog-centered modal-" role="document">-->
-    <!--                <div class="modal-content bg-gradient-danger">-->
 
-    <!--                    <div class="modal-header">-->
-    <!--                        <h6 class="modal-title" id="modal-title-notification">Your attention is required</h6>-->
-    <!--                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
-    <!--                            <span aria-hidden="true">×</span>-->
-    <!--                        </button>-->
-    <!--                    </div>-->
-
-    <!--                    <div class="modal-body">-->
-
-    <!--                        <div class="py-3 text-center">-->
-    <!--                            <i class="ni ni-bell-55 ni-3x"></i>-->
-    <!--                            <h4 class="heading mt-4">You should read this!</h4>-->
-    <!--                            <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>-->
-    <!--                        </div>-->
-
-    <!--                    </div>-->
-
-    <!--                    <div class="modal-footer">-->
-    <!--                        <button type="button" class="btn btn-white">Ok, Got it</button>-->
-    <!--                        <button type="button" class="btn btn-link text-white ml-auto" data-dismiss="modal">Close</button>-->
-    <!--                    </div>-->
-
-    <!--                </div>-->
-    <!--            </div>-->
-    <!--        </div>-->
-<!--    <modal :show.sync="canRegister"-->
-<!--           gradient="dark"-->
-<!--           modal-classes="modal-danger modal-dialog-centered">-->
-<!--      <h6 slot="header" class="modal-title" id="modal-title-notification"-->
-<!--          style="color:antiquewhite;font-family:'Comic Sans MS'">Note</h6>-->
-
-<!--      <div class="py-3 text-center">-->
-<!--        <i class="ni ni-button-play ni-3x"></i>-->
-<!--        <h4 class="heading mt-4" style="color:antiquewhite;font-family:'Comic Sans MS'">-->
-<!--          <br/> Nope !-->
-<!--          <br/>-->
-<!--          <br>Please fill in the form as instructed :)</h4>-->
-
-<!--      </div>-->
-
-<!--      <template slot="footer">-->
-<!--        <base-button type="white" @click="canRegister=false">Ok, Got it!</base-button>-->
-<!--        &lt;!&ndash;                <base-button type="link"&ndash;&gt;-->
-<!--        &lt;!&ndash;                                text-color="white"&ndash;&gt;-->
-<!--        &lt;!&ndash;                                class="ml-auto"&ndash;&gt;-->
-<!--        &lt;!&ndash;                                @click="canRegister=false">&ndash;&gt;-->
-<!--        &lt;!&ndash;                    关闭&ndash;&gt;-->
-<!--        &lt;!&ndash;                </base-button>&ndash;&gt;-->
-<!--      </template>-->
-<!--    </modal>-->
   </section>
 </template>
 <script>

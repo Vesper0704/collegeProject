@@ -14,6 +14,7 @@
 				<a href="/profile" class="nav-link" role="button"><li class="nav-item">Copyright Register</li></a>
         <a href="http://localhost:5001/webui"  target = "_blank" class="nav-link" role="button"><li class="nav-item">
           IPFS Station</li></a>
+        <a href="/search" class="nav-link" role="button"><li class="nav-item">Asset Search</li></a>
 			</ul>
 
 			<ul class="navbar-nav align-items-lg-center ml-lg-auto">

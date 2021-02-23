@@ -19,6 +19,8 @@ import AssetTransfer from './views/components/AssetTransfer.vue';
 import Admin from './views/Admin.vue'
 import changePassword from "@/views/changePassword";
 import checkAcc from "@/views/checkAcc";
+import SearchAsset from "@/views/SearchAsset";
+import ShowPic from "@/views/ShowPic";
 /*
 定义路由
  */
@@ -91,6 +93,24 @@ export default new Router({
 			},
 		},
 		{
+			path:'/search',
+			name: 'search',
+			components: {
+				header: AppHeader,
+				default: SearchAsset,
+				footer: AppFooter
+			},
+		},
+		{
+			path:'/ShowPic',
+			name: 'ShowPic',
+			components: {
+				header: AppHeader,
+				default: ShowPic,
+				footer: AppFooter
+			},
+		},
+		{
 			path: '/editarticle',
 			name: 'editarticle',
 			components: {
@@ -155,7 +175,7 @@ export default new Router({
 					components: {
 						default: AssetTransfer,
 					},
-				},
+				}
 			],
 		},
 	],
