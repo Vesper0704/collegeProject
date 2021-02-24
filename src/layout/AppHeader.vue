@@ -1,6 +1,6 @@
 <template>
 	<header class="header-global">
-		<base-nav class="navbar-main" transparent type="" effect="light" expand>
+		<base-nav class="navbar-main" transparent type="" effect="light" expand style="font-family: 'Comic Sans MS'">
 			<router-link slot="brand" class="navbar-brand mr-lg-5" to="/">
 <!--				<img src="img/brand/blockchain2.png" alt="" />-->
         <i class="ni ni-atom ni-archive-2"></i>
@@ -8,13 +8,26 @@
 
 			<ul class="navbar-nav navbar-nav-hover align-items-lg-center">
 				<a slot="title" href="/" class="nav-link" role="button">
-					<span class="nav-link-inner--text">Home Page</span>
+					<span class="nav-link-inner--text" style="font-family: 'Comic Sans MS'">Home Page</span>
 				</a>
 <!--				<a href="/landing" class="nav-link" role="button"><li class="nav-item">Copyright Market</li></a>-->
-				<a href="/profile" class="nav-link" role="button"><li class="nav-item">Copyright Register</li></a>
-        <a href="http://localhost:5001/webui"  target = "_blank" class="nav-link" role="button"><li class="nav-item">
+				<a href="/profile" class="nav-link" role="button" style="font-family: 'Comic Sans MS'">
+          <li class="nav-item">
+          Copyright Register</li></a>
+
+
+
+
+        <a href="http://localhost:5001/webui"
+           style="font-family: 'Comic Sans MS'"
+           target = "_blank" class="nav-link" role="button"><li class="nav-item">
           IPFS Station</li></a>
-        <a href="/search" class="nav-link" role="button"><li class="nav-item">Asset Search</li></a>
+
+
+        <a href="/search" class="nav-link" style="font-family: 'Comic Sans MS'"
+           role="button">
+          <li class="nav-item">
+          Image Retrieval</li></a>
 			</ul>
 
 			<ul class="navbar-nav align-items-lg-center ml-lg-auto">

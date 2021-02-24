@@ -2,7 +2,7 @@
     <div class="container" style="background-color: #2e2e57">
             <div class="row justify-content-center">
 <!--                <h2 class="section-title" style="color:#2bffc6" >版权服务体系</h2>-->
-              <h2 class="section-title" style="color:#2bffc6" > About The Project</h2>
+              <h2 class="section-title" style="color:#2bffc6;font-family: 'Comic Sans MS'" > About The Project</h2>
                 <div class="col-lg-11">
                     <div class="row row-grid">
                         <div class="col-lg-4">

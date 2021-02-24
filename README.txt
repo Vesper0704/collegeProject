@@ -44,6 +44,7 @@ cd /Users/apple/Desktop/毕设
 
 //查看上传的照片
 http://127.0.0.1:3000/images/{}
+http://localhost:8080/ipfs/[hash]
 
 //查看交易
 http://127.0.0.1:9984/api/v1/transactions/{transaction_id}

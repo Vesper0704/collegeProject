@@ -17,7 +17,8 @@
                 header-classes="bg-white pb-5"
                 body-classes="px-lg-5 py-lg-5"
                 class="border-0"
-                 width="200px">
+
+                style="width: 600px">
             <template>
               <div class="text-center mb-3" style="font-family: 'Comic Sans MS';font-size:20px;color:whitesmoke">
                 <i class="ni ni-folder-17"></i><large> Asset Research</large>
@@ -57,6 +58,7 @@
                                style="background-color: green">
                     Search
                   </base-button>
+                  &nbsp;&nbsp;&nbsp;&nbsp;
                   <base-button type="primary"
                                class="my-xl-1"
                                @click="goBack()"
