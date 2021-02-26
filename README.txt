@@ -48,3 +48,16 @@ http://localhost:8080/ipfs/[hash]
 
 //查看交易
 http://127.0.0.1:9984/api/v1/transactions/{transaction_id}
+
+
+如何开发新项目？
+1. 划分目录结构
+assets: 公共资源 image css
+components: 公用的组件 footer header
+router: 前端路由配置
+store: Vuex.Store 状态管理
+views:  视图
+App.vue: 入口
+main.js : 全局配置 Vue挂载
+(optional)network/utils: 网络请求封装
+public/index.html : 单页面富应用 文件自动注入 浏览器请求到的只有这个index.html
