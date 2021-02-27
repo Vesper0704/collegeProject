@@ -43,7 +43,8 @@ export default {
 name: "ShowPic",
   methods:{
   back(){
-    this.$router.push('/search')
+    localStorage.setItem('imageInfo','undefined')
+    this.$router.go(-1)
   },
     showUrl(){
     console.log(this.imageInfo[0][3].value)
