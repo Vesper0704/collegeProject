@@ -213,7 +213,7 @@ export default {
         if(this.checkForm.password!=this.checkForm.password2){
 
           this.duplicate=1
-          console.log(this.duplicate)
+          //console.log(this.duplicate)
           this.duplicateHint= 'Please make sure you enter the Same password TWICE'
         }else{
           this.duplicate=0
@@ -278,6 +278,7 @@ export default {
               console.log(res)
               if(res.data.status){
                 this.$message.success('Successfully Reset the password :)')
+                localStorage.setItem('Account_change_password','undefined')
                 setTimeout(()=>{
                   this.$router.push({path:'/login'})
                 },500)

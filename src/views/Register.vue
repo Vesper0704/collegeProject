@@ -245,7 +245,7 @@ export default {
             this.code = this.refreshCode(4)
         },
         goBack() {
-            this.$router.go(-1)
+            this.$router.push({path:'/login'})
         },
         createAccount() {
             for(let item in this.registerForm) {

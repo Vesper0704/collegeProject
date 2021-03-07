@@ -642,7 +642,7 @@ function multiUploadInner(files, mail) {
 				const simi = leven(images[item]['phash'], phash);
 
 				//距离越小 相似度越高
-				if (simi <= 10) {
+				if (simi <= 5) {
 					/*
 					删除这个图片
 					 */

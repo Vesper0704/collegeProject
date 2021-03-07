@@ -61,3 +61,5 @@ App.vue: 入口
 main.js : 全局配置 Vue挂载
 (optional)network/utils: 网络请求封装
 public/index.html : 单页面富应用 文件自动注入 浏览器请求到的只有这个index.html
+
+图像检测阈值：controller.js
