@@ -21,8 +21,9 @@ router.get('/imageList',async (req,res)=>{
     let count= await Image.find({}).count()
 
     res.send({
+        total:count,
         imageList:image,
-        total:count
+
     })
 })
 

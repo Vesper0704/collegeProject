@@ -97,20 +97,25 @@ export default {
     },
     submitUpload() {
       // console.log(this.params)
+      console.log(this.fileList.length);
+
+
       if(!this.checked){
       return  this.$message.error({
           message:`Please select the Supervision Policy `,
           dangerouslyUseHTMLString:true
         })
       }
+
       this.$refs.uploadForm.submit()
+
       const info = JSON.parse(localStorage.getItem('user-info'))
       console.log(info.mail);
 
       const formData = new FormData()
      // formData.append('test','test')
       // const headerConfig = { headers: { 'Content-Type': 'multipart/form-data' } }
-      console.log(this.fileList[0])
+      console.log(this.fileList)
       this.fileList.forEach(file => {
        // console.log(file)
         console.log('add');
@@ -122,6 +127,14 @@ export default {
       //console.log(formData)
       console.log(formData.getAll('mail'));
       console.log(formData.getAll('files'));
+     let checkLength = formData.getAll('files').length
+      if(checkLength===0 || checkLength>=2 ){
+        this.fileList=[]
+        return  this.$message.error({
+          message:`Please choose only 1 image at one time :)`,
+          dangerouslyUseHTMLString:true
+      })}
+
 
       axios.post('http://localhost:3000/users/violationCheck',formData)
       .then(res=>{
@@ -129,73 +142,13 @@ export default {
         if(!data.violation){
           this.$message.success('You have permission to register the copyright :)')
         }else{
-          this.$message.error('Permission Denied :(')
+          this.$message.error({
+            message:'Permission Denied :( <br/> You will be punished for infringement if you INSIST !',
+            dangerouslyUseHTMLString:true
+          })
         }
+        this.fileList=[]
       })
-
-      //发送请求
-      // axios.post('http://127.0.0.1:3000/users/multiUpload', formData, headerConfig).then(res => {
-      //   const data = res.data.data //从后端接收到的相关信息
-      //   console.log(res)
-      //   if(data.upload) {
-      //     this.$message({
-      //       type: 'success',
-      //       //上传成功
-      //       message: 'Upload success :)'
-      //     })
-      //     console.log(data)
-      //     data.imageInfos.forEach(imageInfo => {
-      //       this.imageInfo.push([
-      //         {
-      //           name: 'Picture ID',
-      //           value: imageInfo._id
-      //         },
-      //         {
-      //           name: 'Picture name',
-      //           value: imageInfo.title
-      //         },
-      //         {
-      //           name: 'IPFS hash_value',
-      //           value: imageInfo.ipfs_hash
-      //         },
-      //         {
-      //           name: 'Owner',
-      //           value: imageInfo.owner
-      //         },
-      //         {
-      //           name: 'Transaction ID',
-      //           value: imageInfo.otherInfo.id
-      //         },
-      //         {
-      //           name: 'Transaction type',
-      //           value: imageInfo.otherInfo.operation
-      //         }
-      //       ])
-      //     })
-      //     return this.$store.dispatch('user/getInfo')
-      //   }
-      //   //上传失败
-      //   else {
-      //     if(typeof(data['message']) !== 'undefined') {
-      //       this.$message({
-      //         type:'error',
-      //         message:data['message']+'<br/><br/><div> Fail to upload :( </div>',
-      //         dangerouslyUseHTMLString: true,
-      //       })
-      //     }
-      //     else {
-      //       this.$message.error('Upload Failure')
-      //     }
-      //   }
-      //
-      // })
-      //     .then(data => {
-      //
-      //     })
-      //     .catch(err => {
-      //       console.log(err)
-      //     })
-
 
     },
 
