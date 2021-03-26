@@ -13,8 +13,8 @@
                       </div>
                       <div class="col-lg-4 order-lg-3 text-lg-right align-self-lg-center">
                           <div class="card-profile-actions py-4 mt-lg-0">
-<!--                              <base-button type="info" size="sm" class="mr-4" @click="toMessages()"><i class="ni ni-chat-round" ></i> Notifications <badge type="default">{{ notification }}</badge></base-button>-->
-                              <base-button type="info" size="sm" class="mr-4" @click="editProfile()"><i class="ni ni-chat-round"></i>Settings <badge type="default"></badge></base-button>
+                              <base-button type="info" size="sm" class="mr-4" @click="toMessages()"><i class="ni ni-chat-round" ></i> Notifications <badge type="default">{{ notification }}</badge></base-button>
+<!--                              <base-button type="info" size="sm" class="mr-4" @click="editProfile()"><i class="ni ni-chat-round"></i>Settings <badge type="default"></badge></base-button>-->
                           </div>
                       </div>
                       <div class="col-lg-4 order-lg-1">

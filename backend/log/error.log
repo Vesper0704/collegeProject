@@ -1,0 +1,165 @@
+{
+  level: 'warn',
+  message: 'error in multiUpload[object Object]',
+  timestamp: '2021-03-17T01:42:54.713Z'
+}
+{
+  level: 'warn',
+  message: 'error in multiUpload[object Object]',
+  timestamp: '2021-03-17T01:44:31.258Z'
+}
+{
+  level: 'warn',
+  message: 'error in multiUpload[object Object]',
+  timestamp: '2021-03-17T01:45:14.303Z'
+}
+{
+  level: 'warn',
+  message: 'error in multiUpload[object Object]',
+  timestamp: '2021-03-17T01:47:52.271Z'
+}
+{
+  level: 'warn',
+  message: 'error in multiUpload[object Object]',
+  timestamp: '2021-03-17T01:49:29.604Z'
+}
+{
+  level: 'warn',
+  message: 'error in multiUploadReferenceError: violatedImg is not defined',
+  timestamp: '2021-03-17T06:16:57.065Z'
+}
+{
+  level: 'warn',
+  message: 'error in multiUpload[object Object]',
+  timestamp: '2021-03-17T06:16:57.122Z'
+}
+{
+  level: 'warn',
+  message: 'error in multiUploadReferenceError: violatedImg is not defined',
+  timestamp: '2021-03-17T06:17:36.821Z'
+}
+{
+  level: 'warn',
+  message: 'error in multiUpload[object Object]',
+  timestamp: '2021-03-17T06:17:36.831Z'
+}
+{
+  level: 'warn',
+  message: 'error in multiUploadReferenceError: violatedImg is not defined',
+  timestamp: '2021-03-17T06:18:13.781Z'
+}
+{
+  level: 'warn',
+  message: 'error in multiUpload[object Object]',
+  timestamp: '2021-03-17T06:18:13.797Z'
+}
+{
+  level: 'warn',
+  message: 'error in multiUpload[object Object]',
+  timestamp: '2021-03-17T06:19:20.054Z'
+}
+{
+  level: 'warn',
+  message: 'error in multiUpload[object Object]',
+  timestamp: '2021-03-17T06:19:38.863Z'
+}
+{
+  level: 'warn',
+  message: 'error in multiUpload[object Object]',
+  timestamp: '2021-03-17T06:20:39.354Z'
+}
+{
+  level: 'warn',
+  message: 'error in multiUpload[object Object]',
+  timestamp: '2021-03-17T06:20:51.865Z'
+}
+{
+  level: 'warn',
+  message: 'error in multiUpload[object Object]',
+  timestamp: '2021-03-17T06:21:07.603Z'
+}
+{
+  level: 'warn',
+  message: 'error in multiUpload[object Object]',
+  timestamp: '2021-03-17T06:21:44.493Z'
+}
+{
+  level: 'warn',
+  message: 'error in multiUpload[object Object]',
+  timestamp: '2021-03-17T06:22:14.280Z'
+}
+{
+  level: 'warn',
+  message: 'error in multiUpload[object Object]',
+  timestamp: '2021-03-17T06:22:50.148Z'
+}
+{
+  level: 'warn',
+  message: 'error in multiUpload[object Object]',
+  timestamp: '2021-03-17T06:56:43.220Z'
+}
+{
+  level: 'warn',
+  message: 'error in multiUpload[object Object]',
+  timestamp: '2021-03-17T07:18:12.271Z'
+}
+{
+  level: 'warn',
+  message: 'error in multiUpload[object Object]',
+  timestamp: '2021-03-23T14:03:24.929Z'
+}
+{
+  level: 'warn',
+  message: 'error in multiUpload[object Object]',
+  timestamp: '2021-03-23T14:13:27.525Z'
+}
+{
+  level: 'warn',
+  message: 'error in multiUpload[object Object]',
+  timestamp: '2021-03-26T02:50:11.886Z'
+}
+{
+  level: 'warn',
+  message: 'error in multiUpload[object Object]',
+  timestamp: '2021-03-26T02:50:11.890Z'
+}
+{
+  level: 'warn',
+  message: 'error in multiUpload[object Object]',
+  timestamp: '2021-03-26T02:50:35.457Z'
+}
+{
+  level: 'warn',
+  message: 'error in multiUpload[object Object]',
+  timestamp: '2021-03-26T02:50:35.457Z'
+}
+{
+  level: 'warn',
+  message: 'error in multiUpload[object Object]',
+  timestamp: '2021-03-26T02:50:55.373Z'
+}
+{
+  level: 'warn',
+  message: 'error in multiUpload[object Object]',
+  timestamp: '2021-03-26T02:50:55.374Z'
+}
+{
+  level: 'warn',
+  message: 'error in multiUpload[object Object]',
+  timestamp: '2021-03-26T02:50:55.481Z'
+}
+{
+  level: 'warn',
+  message: 'error in multiUploadFetchError: request to http://127.0.0.1:9984/api/v1/transactions?mode=commit failed, reason: socket hang up',
+  timestamp: '2021-03-26T02:51:21.015Z'
+}
+{
+  level: 'warn',
+  message: 'error in multiUpload[object Object]',
+  timestamp: '2021-03-26T02:51:21.017Z'
+}
+{
+  level: 'warn',
+  message: 'error in multiUpload[object Object]',
+  timestamp: '2021-03-26T02:55:18.090Z'
+}

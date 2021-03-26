@@ -21,6 +21,7 @@ import changePassword from "@/views/changePassword";
 import checkAcc from "@/views/checkAcc";
 import SearchAsset from "@/views/SearchAsset";
 import ShowPic from "@/views/ShowPic";
+import ViolationTest from "@/views/ViolationTest";
 /*
 定义路由
  */
@@ -73,6 +74,15 @@ export default new Router({
 				default: Register,
 				footer: AppFooter,
 			},
+		},
+		{
+			path:'/violation',
+			name:'violation',
+			components:{
+				header:AppHeader,
+				default:ViolationTest,
+				footer:AppFooter
+			}
 		},
 		{
 			path: '/checkAcc',

@@ -1,5 +1,6 @@
 <template>
   <div class="container mt--300 text-center">
+    <br/><br/><br/><br/><br/><br/><br/><br/>
     <i class="ni ni-cloud-download-95 " style="color: whitesmoke"></i><h3  class="display-3" style="font-family: 'Comic Sans MS';
     font-size: 30px;
     color:navajowhite">
@@ -127,7 +128,6 @@ export default {
             })
 
           }
-
           else {
              this.$message.error('Upload Failure')
           }
@@ -141,6 +141,7 @@ export default {
         console.log(err)
       })
     },
+
     beforeUpload(file) {
       this.fileList.push(file)
     },

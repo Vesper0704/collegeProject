@@ -102,16 +102,16 @@ export default {
   },
   methods: {
     search(){
-
       console.log(this.checkForm.hash)
       let hash = this.checkForm.hash
       if(hash.startsWith('Qm')) {
-        axios.post('http://localhost:3000/search', {hash: hash}).then(res => {
-          if(res.data.state){
-            console.log('success');
-            console.log(res.data.data.url)
-           var imageInfo=res.data.data
-            var res=[]
+        axios.post('http://localhost:3000/search', {hash: hash})
+             .then(res => {
+              if(res.data.state){
+               console.log('success');
+               console.log(res.data.data.url)
+               var imageInfo=res.data.data
+               var res=[]
 
             res.push([
               {

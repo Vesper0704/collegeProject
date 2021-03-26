@@ -1,10 +1,11 @@
 var express = require('express');
 var router = express.Router();
 const controller = require('../controllers/controller');
+const violator = require('../controllers/violationCheck')
 const multer = require('multer');
 const path = require('path');
-const mkdirp =require('mkdirp')
-const sd = require('silly-datetime')
+// const mkdirp =require('mkdirp')
+// const sd = require('silly-datetime')
 
 		//转换成年月日的格式  按照这样的格式生成目录存储
 		// let day = sd.format(new Date(),'YYYYMMDD')
@@ -55,5 +56,6 @@ router.post('/checkImage', controller.checkImage);
 router.post('/monitAcceptor', controller.monitAcceptor);
 router.post('/getAccount',controller.getAccount)
 router.post('/changePassword',controller.changePassword)
+router.post('/violationCheck',upload.array('files'),violator.violationCheck)
 
 module.exports = router;

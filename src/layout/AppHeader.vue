@@ -28,6 +28,11 @@
            role="button">
           <li class="nav-item">
           Image Retrieval</li></a>
+
+        <a href="/violation" class="nav-link" style="font-family: 'Comic Sans MS'"
+           role="button">
+          <li class="nav-item">
+            Violation Check</li></a>
 			</ul>
 
 			<ul class="navbar-nav align-items-lg-center ml-lg-auto">

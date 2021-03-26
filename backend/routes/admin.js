@@ -8,7 +8,7 @@ router.get('/',(req,res)=>{
     res.render('admin',{title:'Administration'})
 })
 router.get('/userList',async(req,res)=>{
-    let user = await User.find({})
+    let user = await  User.find({})
     let count = await User.find({}).count()
     res.send({
         userList:user,

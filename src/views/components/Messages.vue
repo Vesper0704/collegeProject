@@ -1,7 +1,7 @@
 <template>
   <section class="container message mt--300">
     <div class="row justify-content-md-center">
-      <single-message v-for="(article, index) in articles"
+      <single-message v-if="articles.length" v-for="(article, index) in articles"
       :key="index"
       :title="article.title"
       :imgurl="article.cover"
@@ -11,7 +11,12 @@
       :id="article._id"
       >
       </single-message>
-      <base-button type="primary" @click="goback" class="goback-button">返回</base-button>
+      <single-message v-if="!articles.length"
+                      brief_intro="No Notifications yet"
+                      :date=currentDate
+                      :imgurl="noUrl">
+      </single-message>
+      <base-button type="danger" @click="goback" class="goback-button">Return</base-button>
     </div>
   </section>
 </template>
@@ -30,6 +35,8 @@ export default {
   },
   data() {
     return {
+      noUrl: `http://localhost:3000/avatar/avatar.svg`,
+      currentDate:new Date(),
       title: "",
       imgurl: "",
       url: "",

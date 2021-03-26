@@ -640,14 +640,23 @@ function multiUploadInner(files, mail) {
 			for (let item in images) {
 				//计算phash之间的编辑距离
 				const simi = leven(images[item]['phash'], phash);
-
+			//	console.log(item);
 				//距离越小 相似度越高
 				if (simi <= 5) {
+
+					//判断是否监测 发送侵权信息
+				//	console.log(`${config.serverUrl}/images/${file.filename}`)
+					// let violatedImg = await Image.findOne({url:`${config.serverUrl}/images/${file.filename}`})
+					// console.log(violatedImg)
+
 					/*
 					删除这个图片
 					 */
 					unlinkFile(`${file.destination}/${file.filename}`);
 					let similarity = 1 - simi / 29;
+
+
+
 					/*
 					拒绝 函数返回 后续不再执行 直接跳到catch
 					 */
@@ -1106,6 +1115,7 @@ async function monitAcceptor(req, res, next) {
                                   <div class="col-md-12 text-center">
                                     
                                     <img src="${images[i].url}" alt="" style="max-width: 80%;">
+
                                   </div>
                                   <p>侵权网址为：<a href="${url}">${url}</a></p>
                                   <p>请您及时维权</p>
