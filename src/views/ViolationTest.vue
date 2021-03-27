@@ -143,7 +143,7 @@ export default {
           this.$message.success('You have permission to register the copyright :)')
         }else{
           this.$message.error({
-            message:'Permission Denied :( <br/> You will be punished for infringement if you INSIST !',
+            message:`Permission Denied by <strong>${data.info}</strong> <br/> You will be punished for infringement if you INSIST !`,
             dangerouslyUseHTMLString:true
           })
         }

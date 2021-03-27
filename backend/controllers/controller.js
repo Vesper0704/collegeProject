@@ -117,21 +117,21 @@ async function login(req, res, next) {
 		const user = await User.findOne({ username: username });
 
 		//test to get all of the user info
-		User.find({ },function (err,docs) {
-			if(err){
-				console.log('find err:',err);
-				return;
-			}
-			console.log('result:',docs);
-		});
+		// User.find({ },function (err,docs) {
+		// 	if(err){
+		// 		console.log('find err:',err);
+		// 		return;
+		// 	}
+		// 	console.log('result:',docs);
+		// });
 
-		Image.find({ },function (err,docs) {
-			if(err){
-				console.log('find err:',err);
-				return;
-			}
-			console.log('image result:',docs);
-		});
+		// Image.find({ },function (err,docs) {
+		// 	if(err){
+		// 		console.log('find err:',err);
+		// 		return;
+		// 	}
+		// 	console.log('image result:',docs);
+		// });
 
 		// Article.find({ },function (err,docs) {
 		// 	if(err){

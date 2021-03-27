@@ -67,6 +67,7 @@ export default {
     },
     submitUpload() {
       // console.log(this.params)
+
       this.$refs.uploadForm.submit()
       const info = JSON.parse(localStorage.getItem('user-info'))
       const formData = new FormData()
@@ -77,6 +78,7 @@ export default {
       //加上用户的邮箱
       formData.append('mail', info.mail)
 
+      this.fileList= []
       //发送请求
       axios.post('http://127.0.0.1:3000/users/multiUpload', formData, headerConfig).then(res => {
         const data = res.data.data //从后端接收到的相关信息

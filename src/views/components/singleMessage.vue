@@ -5,11 +5,11 @@
         <img :src="imgurl" alt="" class="thumbnail">
       </div>
       <div class="message-content col-md-9">
-        <a @click="goto(id)" href="#"><h4>{{ title }}</h4></a>
+        <h4 style="color:indianred">{{ title }}</h4>
         <p class="brief-introduction">{{ brief_intro }}</p>
         <div class="public-time">
-          <span ><i class="ni ni-watch-time"></i></span>
-          <p class="date">{{date}}</p>
+          <span ><i class="ni ni-compass-04"></i></span>&nbsp;
+          <p class="date">  {{date}}</p>
         </div>
       </div>
     </div>
