@@ -28,7 +28,7 @@
                     <div class="col-lg-7 text-center pt-lg">
 
                       <p class="lead text-white-50 mt-4 mb-5 fontstyle" style="font-size:30px">Copyright Protection Platform based-on BLOCKCHAIN</p>
-                        <img src="img/brand/blockchain1.png" style="width:2000px" class="img-fluid">
+                        <img src="brand2.png" style="width:200px" class="img-fluid">
 
                       <p class="lead text-white-50 mt-4 mb-5 " style="font-size:18px;color: navajowhite;font-family: 'Comic Sans MS'">
                         Thanks for choosing our platform :)
@@ -56,7 +56,6 @@
                 </div>
             </div>
         </div>
-
     </section>
 </template>
 <script>
@@ -81,7 +80,6 @@ export default {};
   100%{
     opacity: 1;
     transform :translateX(0px);
-
   }
 }
 </style>

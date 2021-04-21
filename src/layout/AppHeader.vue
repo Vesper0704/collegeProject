@@ -1,27 +1,32 @@
 <template>
 	<header class="header-global">
-		<base-nav class="navbar-main" transparent type="" effect="light" expand style="font-family: 'Comic Sans MS'">
-			<router-link slot="brand" class="navbar-brand mr-lg-5" to="/">
-<!--				<img src="img/brand/blockchain2.png" alt="" />-->
+		<base-nav
+        class="navbar-main" transparent type="" effect="light" expand
+        style="font-family: 'Comic Sans MS'">
+
+      <router-link slot="brand" class="navbar-brand mr-lg-5" to="/">
         <i class="ni ni-atom ni-archive-2"></i>
 			</router-link>
 
 			<ul class="navbar-nav navbar-nav-hover align-items-lg-center">
-				<a slot="title" href="/" class="nav-link" role="button">
-					<span class="nav-link-inner--text" style="font-family: 'Comic Sans MS'">Home Page</span>
-				</a>
+
+<!--				<a slot="title" href="/" class="nav-link" role="button">-->
+<!--					<span class="nav-link-inner&#45;&#45;text" style="font-family: 'Comic Sans MS'">Home Page</span>-->
+<!--				</a>-->
+
 <!--				<a href="/landing" class="nav-link" role="button"><li class="nav-item">Copyright Market</li></a>-->
 				<a href="/profile" class="nav-link" role="button" style="font-family: 'Comic Sans MS'">
           <li class="nav-item">
           Copyright Register</li></a>
 
 
-
-
         <a href="http://localhost:5001/webui"
            style="font-family: 'Comic Sans MS'"
-           target = "_blank" class="nav-link" role="button"><li class="nav-item">
-          IPFS Station</li></a>
+           target = "_blank" class="nav-link" role="button"
+            >
+          <li class="nav-item">
+          IPFS Station</li>
+        </a>
 
 
         <a href="/search" class="nav-link" style="font-family: 'Comic Sans MS'"
@@ -32,8 +37,22 @@
         <a href="/violation" class="nav-link" style="font-family: 'Comic Sans MS'"
            role="button">
           <li class="nav-item">
-            Violation Check</li></a>
+            Infringement Test</li>
+        </a>
+
+        <a href="/TransQuery" class="nav-link" style="font-family: 'Comic Sans MS'"
+           role="button">
+          <li class="nav-item">
+            Transaction Query</li>
+        </a>
+
+
+<!--        <a href="/" class="nav-link" style="font-family: 'Comic Sans MS'"-->
+<!--           role="button">-->
+<!--          <li class="nav-item">-->
+<!--            Transaction Retrieval</li></a>-->
 			</ul>
+<!--     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
 
 			<ul class="navbar-nav align-items-lg-center ml-lg-auto">
 <!--        没有登陆时显示sign up/in-->
@@ -43,7 +62,7 @@
 <!--							<i class="fa fa-cloud-download mr-2"></i>-->
               	<i class="fa fa-exchange mr-2"></i>
 						</span>
-						<span class="nav-link-inner--text">Sign in/Sign up</span>
+						<span class="nav-link-inner--text" style="font-size:10px ">Sign in/Sign up</span>
 					</a>
 				</li>
 <!--        已经登陆显示用户名-->
@@ -67,7 +86,7 @@
 import BaseNav from '@/components/BaseNav';
 import BaseDropdown from '@/components/BaseDropdown';
 import CloseButton from '@/components/CloseButton';
-
+import axios from 'axios'
 export default {
 	components: {
 		BaseNav,
@@ -76,8 +95,8 @@ export default {
 	},
 	data() {
 		return {
-			//   username: this.$store.getters.name
-			username: '',
+			  username: this.$store.getters.name
+		//	username: '',
 		};
 	},
 	created: function() {
@@ -94,7 +113,7 @@ export default {
 			}
 		},
 	},
-	computed: {
+	computed:{
 		loggedin: {
 			get() {
 				if (this.$store.getters.token) {
@@ -103,6 +122,11 @@ export default {
 					return false;
 				}
 			},
+     // get(){
+     //   if(this.username!=''){
+     //     return true
+     //   }
+     // }
 		},
 		// username: {
 		//   get() {
@@ -116,6 +140,7 @@ export default {
 		// }
 	},
 	methods: {
+
 		toLogin() {
 			this.$router.push({ path: '/login' });
 		},

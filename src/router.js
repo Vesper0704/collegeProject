@@ -22,6 +22,7 @@ import checkAcc from "@/views/checkAcc";
 import SearchAsset from "@/views/SearchAsset";
 import ShowPic from "@/views/ShowPic";
 import ViolationTest from "@/views/ViolationTest";
+import TransQuery from "@/views/components/TransQuery";
 /*
 定义路由
  */
@@ -103,6 +104,15 @@ export default new Router({
 			},
 		},
 		{
+			path: '/TransQuery',
+			name: 'TransQuery',
+			components:{
+				header:AppHeader,
+				default: TransQuery,
+				footer: AppFooter
+			}
+		},
+		{
 			path:'/search',
 			name: 'search',
 			components: {
@@ -168,7 +178,8 @@ export default new Router({
 				{
 					path: 'image/:id',
 					name: 'imageEditing',
-					components: {
+					components:
+					{
 						default: EditImage,
 					},
 				},

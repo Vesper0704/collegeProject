@@ -91,5 +91,5 @@ app.use(function(err, req, res, next) {
 	res.render('error');
 });
 
-//
+//挂载
 module.exports = app;

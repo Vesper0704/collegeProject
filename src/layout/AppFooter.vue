@@ -7,9 +7,8 @@
 					<div class="copyright">
 					<!--	&copy-->
             @{{ year }}
-						<a href="https://www.bupt.edu.cn/" target="_blank" rel="noopener"
-							>基于区块链的版权保护系统--毕设--北邮丁仁杰</a
-						>
+						<a href="https://www.bupt.edu.cn/" target="_blank" rel="noopener">
+              基于区块链的版权保护系统--毕设--北邮丁仁杰</a>
 					</div>
 				</div>
 				<!-- <div class="col-md-6">

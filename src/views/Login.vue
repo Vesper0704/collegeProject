@@ -199,7 +199,7 @@ export default {
                 this.$store.dispatch('user/login', this.loginForm)
                 .then((data) => {
                     if(data.login) {
-
+                        //this.$store.getters.name=
                         this.$router.push({ path:'/', query: this.otherQuery })
                         return this.$store.dispatch('user/getInfo')
                     } else {

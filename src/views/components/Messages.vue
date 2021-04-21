@@ -1,8 +1,8 @@
 <template>
-  <section class="container message mt--300">
-    <div class="row justify-content-md-center">
+  <section class="container message mt--400" >
+    <div class="row col-form-label-lg justify-content-md-center">
       <single-message
-          style="font-family: 'Comic Sans MS'"
+      style="font-family: 'Comic Sans MS'"
       v-if="articles.length>=1" v-for="(article, index) in articles"
       :key="index"
       :title="article.title"
@@ -13,11 +13,13 @@
       :id="article._id"
       >
       </single-message>
-      <single-message v-else-if="articles.length===0"
-                      brief_intro="No Notifications yet"
+
+      <single-message v-if="!articles.length"
+                      title="No Notifications Yet"
                       :date=currentDate
                       :imgurl="noUrl">
       </single-message>
+
       <base-button type="danger" @click="goback" class="goback-button">Return</base-button>
     </div>
   </section>
@@ -46,7 +48,7 @@ export default {
   data() {
     return {
       noUrl: `http://localhost:3000/avatar/avatar.svg`,
-      currentDate:new Date(),
+      currentDate:new Date().toString(),
       title: "",
       imgurl: "",
       url: "",
