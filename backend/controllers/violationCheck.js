@@ -13,6 +13,13 @@ module.exports = {
         console.log(mail)
 
         let files = req.files
+        console.log(req.files);
+        // files.forEach(each=>{
+        //     let format = each.originalname.split('.').slice(-1)[0]
+        //     if(format!='png' && format!='jpg')
+        //         return res.send('wrong format')
+        // })
+
         if (files.length === 0 ) {
             return res.send('invalid length')
         }

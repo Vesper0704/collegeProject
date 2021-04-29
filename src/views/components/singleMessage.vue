@@ -1,8 +1,8 @@
 <template>
-  <div class="container">
+  <div class="container" style="font-family: 'Comic Sans MS'; background-color: indianred">
     <div class="row message-wrapper">
       <div class="thumbnail-wrapper col-md-3">
-        <img :src="imgurl" alt="" class="thumbnail">
+        <img :src="imgurl" alt="" class="thumbnail" />
       </div>
       <div class="message-content col-md-9">
         <h4 style="color:indianred">{{ title }}</h4>
@@ -24,11 +24,6 @@ export default {
     title: String,
     brief_intro: String,
     id: String
-  },
-  methods: {
-    goto(url) {
-      this.$router.push({path: '/profile/article/' + this.id})
-    }
   }
 }
 </script>

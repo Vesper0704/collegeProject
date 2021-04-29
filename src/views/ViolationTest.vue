@@ -29,13 +29,16 @@
     <!--    上传按钮 el-upload组件-->
     <el-upload
         :before-upload="beforeUpload"
-        action="#"
         ref="uploadForm"
+        action="#"
         :auto-upload="false"
         list-type="picture-card"
         :file-list="fileList"
         :on-preview="handlePictureCardPreview"
         :on-remove="handleRemove"
+        accept=".jpg, .jpeg, .png"
+        :limit = limit
+        :on-exceed="alertExceed"
     >
       <i class="el-icon-add-location"></i>
     </el-upload>
@@ -52,9 +55,14 @@
                  @click="submitUpload">check</base-button>
     <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
     <span></span>
+
+
     <base-button type="primary"  style="font-family: 'Comic Sans MS'" class="upload-button" @click="goback">back</base-button>
 
-    <image-detail v-for="(info,index) in imageInfo" :key="index" :tableData="info"></image-detail>
+<!--<base-button type="primary" @click="test"> test format</base-button>-->
+<!--    <el-button @click="test">test</el-button>-->
+
+<!--    <image-detail v-for="(info,index) in imageInfo" :key="index" :tableData="info"></image-detail>-->
   </div>
   </div>
 
@@ -73,7 +81,8 @@ export default {
       fileList: [],
       params: {},
       imageInfo: [],
-      checked:false
+      checked:false,
+      limit:1
     };
   },
   created: function() {
@@ -81,6 +90,12 @@ export default {
     this.params = { 'mail': info.mail }
   },
   methods: {
+    alertExceed(){
+      this.$message.error(`[  Sorry but Exceed Limit ${this.limit}  ]`)
+    },
+    test(){
+      console.log(this.fileList);
+    },
     handlePolicy(){
       this.$message.warning({
         message:`Please notice that your behavior is under supervision<br/> AND
@@ -89,7 +104,7 @@ export default {
       })
     },
     handleRemove(file, fileList) {
-
+      //fileList.pop(file)
     },
     handlePictureCardPreview(file) {
       this.dialogImageUrl = file.url;
@@ -98,10 +113,9 @@ export default {
     submitUpload() {
       // console.log(this.params)
       console.log(this.fileList.length);
-
-
+      console.log(this.checked);
       if(!this.checked){
-      return  this.$message.error({
+      return this.$message.error({
           message:`Please select the Supervision Policy `,
           dangerouslyUseHTMLString:true
         })
@@ -132,9 +146,8 @@ export default {
         this.fileList=[]
         return  this.$message.error({
           message:`Please choose only 1 image at one time :)`,
-          dangerouslyUseHTMLString:true
+          // dangerouslyUseHTMLString:true
       })}
-
 
       axios.post('http://localhost:3000/users/violationCheck',formData)
       .then(res=>{
@@ -152,14 +165,17 @@ export default {
 
     },
 
-
-
-
     beforeUpload(file) {
+      let name = file.name
+      let format = name.split('.').slice(-1)
+      if(format[0]!='png' && format[0]!='jpg')
+        this.$message.error('Wrong Format of File [ .png .jpg ONLY ]')
+      console.log(format);
+
       this.fileList.push(file)
     },
     goback() {
-      //返回上一个页面
+      //返回主页
       this.$router.push({path:'/'})
     }
   }

@@ -21,7 +21,7 @@
     </div>
 
     <div class="text-center">
-      <img :src="url" width="400px"/>
+      <img :src="url" width="400px" />
     </div>
     <br/>
     <div align="center" style="font-family: 'Comic Sans MS';color: coral;font-size: 25px">
@@ -44,7 +44,7 @@ name: "ShowPic",
   methods:{
   back(){
     localStorage.setItem('imageInfo','undefined')
-    this.$router.go(-1)
+    this.$router.push({path:'/'})
   },
     showUrl(){
     console.log(this.imageInfo[0][3].value)

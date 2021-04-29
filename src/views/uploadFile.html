@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title></title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script></head>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+<body>
+<div id="app">
+<el-upload
+:before-upload="beforeUpload"
+list-type="picture-card"
+:on-change="changeFile"
+action="#"
+:auto-upload="false"
+:limit="2"
+:on-exceed="handleExceed"
+accept=".png, .jpg"
+
+>
+upload here
+</el-upload>
+    <el-button> upload </el-button>
+</div>
+
+<script>
+    var app = new Vue({
+        el: "#app",
+        methods:{
+            // handleRemove(file,fileList){
+            //     console.log(`delete ${file} from filelist`)
+            //     console.log(fileList)
+            // },
+            handleExceed(file, fileList){
+                //console.log(file,fileList)
+                this.$message.error('exceed limit!')
+            },
+            changeFile(file,fileList){
+               console.log('file',file.raw.name)
+                console.log('fileList',fileList)
+            },
+            beforeUpload(file){
+                let name = file.name
+                let format = name.split('.').slice(-1)
+                if(format[0]!='png' && format[0]!='jpg')
+                    alert('wrong format')
+                console.log(format);
+            }
+        }
+
+    })
+</script>
+</body>
+</html>

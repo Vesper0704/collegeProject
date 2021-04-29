@@ -1,5 +1,6 @@
 <!--主页上的排版-->
 <template>
+
     <section class="section-hero section-shaped my-0">
         <div class="shape shape-style-4 shape-dark" style="background-color: indianred">
 
@@ -27,8 +28,11 @@
                 <div class="row justify-content-center align-items-center">
                     <div class="col-lg-7 text-center pt-lg">
 
-                      <p class="lead text-white-50 mt-4 mb-5 fontstyle" style="font-size:30px">Copyright Protection Platform based-on BLOCKCHAIN</p>
-                        <img src="brand2.png" style="width:200px" class="img-fluid">
+                      <p class="lead text-white-50 mt-4 mb-5 fontstyle" style="font-size:30px">
+                        Copyright Protection Platform based-on BLOCKCHAIN
+                      </p>
+
+            <img src="brand2.png" style="width:200px" class="animate__animated animate__fadeIn" />
 
                       <p class="lead text-white-50 mt-4 mb-5 " style="font-size:18px;color: navajowhite;font-family: 'Comic Sans MS'">
                         Thanks for choosing our platform :)
@@ -60,6 +64,7 @@
 </template>
 <script>
 export default {};
+
 </script>
 <style>
 .fontstyle{font:italic 1em Georgia, serif;}
